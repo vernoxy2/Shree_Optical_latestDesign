@@ -2,46 +2,47 @@ import React, { useState, useEffect } from "react";
 import Slide1 from "../../../Assets/HeroSection/Img1.webp";
 import Slide2 from "../../../Assets/HeroSection/Img2.webp";
 //import Slide3 from "../../../Assets/HomePage/HomeSliderImg/slider-3.png";
-import FrameIcon from "../../../Assets/HeroSection/Frame 60.svg";
+import FrameIcon from "../../../Assets/HeroSection/red white arrow.svg";
+import Popup from "./Popup";
 
 const HeaderData = [
   {
     id: 0,
     BgImag: Slide1,
-    position: "object-center",  // female — show full body centered
-  title: (
-  <>
-    Where{" "}
-    <span style={{ fontFamily: "'Mr De Haviland', cursive", color: "#FF5656", fontSize: "2em" , fontWeight: "400"}}>
-      Vision
-    </span>{" "}<br></br>
-    Meets Innovation.
-  </>
-),
-    subtitle:
-      "Stylish tortoiseshell glasses with clear nose pads, dual-tone temples, lightweight lenses, and UV-protected, anti-glare vision enhancement.",
+    position: "object-center",
+    title: (
+      <>
+        Where{" "}
+        <span style={{ fontFamily: "'Mr De Haviland', cursive", color: "#FF5656", fontSize: "2em", fontWeight: "400" }}>
+          Vision
+        </span>{" "}<br />
+        Meets Innovation.
+      </>
+    ),
+    subtitle: "Stylish tortoiseshell glasses with clear nose pads, dual-tone temples, lightweight lenses, and UV-protected, anti-glare vision",
+    textOffset: "ml-20",  // slide 1 — text sits just after wood panel
   },
   {
     id: 1,
     BgImag: Slide2,
-    position: "object-top",     // male — anchor to top so hair doesn't cut
-     title: (
-  <>
-    Where{" "}
-    <span style={{ fontFamily: "'Mr De Haviland', cursive", color: "#FF5656", fontSize: "2em" , fontWeight: "400" }}>
-      Vision
-    </span>{" "}<br></br>
-    Meets Innovation.
-  </>
-),
-    subtitle:
-      "Stylish tortoiseshell glasses with clear nose pads, dual-tone temples, lightweight lenses, and UV-protected, anti-glare vision enhancement.",
+    position: "object-top",
+    title: (
+      <>
+        Where{" "}
+        <span style={{ fontFamily: "'Mr De Haviland', cursive", color: "#FF5656", fontSize: "2em", fontWeight: "400" }}>
+          Fashion
+        </span>{" "}<br />
+        Meets Function
+      </>
+    ),
+    subtitle: "Stylish tortoiseshell glasses with clear nose pads, dual-tone temples, lightweight lenses, and UV-protected, anti-glare vision enhancement.",
+    textOffset: "ml-20",  // slide 2 — no wood, less offset
   },
- 
 ];
 
 const HeroSection = () => {
   const [current, setCurrent] = useState(0);
+  const [showPopup, setShowPopup] = useState(true);
 
   // Auto-play: advance slide every 5 seconds
   useEffect(() => {
@@ -52,7 +53,9 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[300px] sm:h-[480px] lg:h-[680px] overflow-hidden ">
+    <div className="relative w-full h-[300px] sm:h-[480px] lg:h-screen overflow-hidden">
+      {/* Show Popup on Load */}
+      {showPopup && <Popup onClose={() => setShowPopup(false)} />}
 
       {/* Background Images */}
       {HeaderData.map((item, index) => (
@@ -71,13 +74,13 @@ const HeroSection = () => {
 
       {/* Text Content — left-aligned, matches image */}
       <div className="absolute inset-0 z-20 flex items-center container w-[100%] ">
-        <div className="2xl:pr-16 max-w-2xl ">
+        <div className={`2xl:pr-12 max-w-2xl ${HeaderData[current].textOffset}`}>
           <h1 className="text-white text-xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4">
             {HeaderData[current].title}
           </h1>
           {/* Red divider line */}
           
-         <p className="!text-black !font-normal text-xs md:text-base lg:text-lg leading-relaxed w-6/12">
+         <p className="!text-black !font-normal text-xs md:text-base lg:text-lg leading-relaxed w-7/12">
           {HeaderData[current].subtitle}
         </p>
 
