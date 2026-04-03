@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  safelist: ['font-bold', 'font-normal'],  // add this
+  safelist: ['font-bold', 'font-normal'],
   theme: {
     extend: {
       container: {
@@ -22,12 +22,16 @@ export default {
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         nunito: ['"Nunito Sans"', "sans-serif"],
-        instrument: ['"Instrument Sans"', "sans-serif"],  // add this
+        instrument: ['"Instrument Sans"', "sans-serif"],
       },
       keyframes: {
         scroll: {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-50%)' },
+        },
+        spin: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
         },
       },
       animation: {
