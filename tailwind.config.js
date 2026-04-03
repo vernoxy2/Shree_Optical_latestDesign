@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  safelist: ['font-bold', 'font-normal'],  // add this
   theme: {
     extend: {
       container: {
@@ -15,12 +16,13 @@ export default {
       },
       colors: {
         primary: "#FF5656",
-        secondary: "#676767",
-        Bg: "#FFF6F6",
+        secondary: "#1E2A38",
+        Bg: "#FFF4F1",
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         nunito: ['"Nunito Sans"', "sans-serif"],
+        instrument: ['"Instrument Sans"', "sans-serif"],  // add this
       },
       keyframes: {
         scroll: {

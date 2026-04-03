@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import Slide1 from "../../../assets/HeroSection/Img1.png";
 import Slide2 from "../../../assets/HeroSection/Img2.png";
 //import Slide3 from "../../../assets/HomePage/HomeSliderImg/slider-3.png";
+import FrameIcon from "../../../Assets/HeroSection/Frame 60.svg";
 
 const HeaderData = [
   {
     id: 0,
     BgImag: Slide1,
+    position: "object-center",  // female — show full body centered
   title: (
   <>
     Where{" "}
@@ -22,6 +24,7 @@ const HeaderData = [
   {
     id: 1,
     BgImag: Slide2,
+    position: "object-top",     // male — anchor to top so hair doesn't cut
      title: (
   <>
     Where{" "}
@@ -57,7 +60,7 @@ const HeroSection = () => {
           key={item.id}
           src={item.BgImag}
           alt="Slider Background"
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+          className={`absolute inset-0 w-full h-full object-cover ${item.position} transition-opacity duration-1000 ${
             index === current ? "opacity-100" : "opacity-0"
           }`}
         />
@@ -74,9 +77,16 @@ const HeroSection = () => {
           </h1>
           {/* Red divider line */}
           
-         <p className="!text-black !font-normal text-xs md:text-base lg:text-lg leading-relaxed w-5/12">
-  {HeaderData[current].subtitle}
-</p>
+         <p className="!text-black !font-normal text-xs md:text-base lg:text-lg leading-relaxed w-6/12">
+          {HeaderData[current].subtitle}
+        </p>
+
+        {/* Visit Now Button */}
+        <button className="mt-6 flex items-center gap-3 bg-primary text-white font-instrument font-bold text-sm lg:text-base px-8 py-3 hover:bg-primary/90 transition-all duration-300">
+          Visit Now
+          <img src={FrameIcon} alt="arrow" className="w-8 h-8" />
+        </button>
+
         </div>
       </div>
 
