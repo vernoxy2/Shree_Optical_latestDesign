@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Slide1 from "../../../assets/HeroSection/Img1.png";
-import Slide2 from "../../../assets/HeroSection/Img2.png";
-//import Slide3 from "../../../assets/HomePage/HomeSliderImg/slider-3.png";
-import FrameIcon from "../../../assets/HeroSection/Frame 60.svg";
+import Slide1 from "../../../Assets/HeroSection/Img1.png";
+import Slide2 from "../../../Assets/HeroSection/Img2.png";
+//import Slide3 from "../../../Assets/HomePage/HomeSliderImg/slider-3.png";
+import FrameIcon from "../../../Assets/HeroSection/Frame 60.svg";
 
 const HeaderData = [
   {
