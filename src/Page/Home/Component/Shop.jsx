@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import MenImg from "../../../Assets/ShopFor/Mask group (20).png";
-import WomenImg from "../../../Assets/ShopFor/Mask group (21).png";
-import KidsImg from "../../../Assets/ShopFor/Mask group (22).png";
-import SunglassesImg from "../../../Assets/ShopFor/Mask group (23).png";
+import MenImg from "../../../Assets/ShopFor/Mask group (20).webp";
+import WomenImg from "../../../Assets/ShopFor/Mask group (21).webp";
+import KidsImg from "../../../Assets/ShopFor/Mask group (22).webp";
+import SunglassesImg from "../../../Assets/ShopFor/Mask group (23).webp";
 import ShopForLogo from "../../../Assets/ShopFor/Frame 66.png";
 
 const shopItems = [
