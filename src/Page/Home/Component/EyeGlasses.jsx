@@ -11,7 +11,7 @@ import glass3 from "../../../Assets/EyeGlasses/glass3.webp";
 import glass4 from "../../../Assets/EyeGlasses/glass4.webp";
 import glass5 from "../../../Assets/EyeGlasses/glass5.webp";
 import glass6 from "../../../Assets/EyeGlasses/glass6.webp";
-import LeftArrow from "../../../Assets/EyeGlasses/Frame 73.svg";
+import LeftArrow from "../../../Assets/EyeGlasses/left black arrow.svg";
 import RightArrow from "../../../Assets/EyeGlasses/right black arrow.svg";
 import BlackArrow from "../../../Assets/EyeGlasses/black arrow.svg";
 
