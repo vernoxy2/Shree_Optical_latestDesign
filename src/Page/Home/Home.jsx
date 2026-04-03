@@ -4,6 +4,7 @@ import Shop from './Component/Shop'
 import AboutUs from './Component/AboutUs'
 import Navbar from './Component/Layout/Navbar'
 import BrandSupport from './Component/BrandSupport'
+import WhychooseUs from './Component/WhychooseUs'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
         <Shop/>
         <AboutUs/>
         <BrandSupport/>
+        <WhychooseUs/>
 
 
     </div>
