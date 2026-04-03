@@ -18,7 +18,14 @@ const HeroSection = () => {
         zIndex: 100,
       }}>
         {/* Logo */}
-        <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>Logo</div>
+        <div style={{ fontWeight: 'bold', fontSize: '1.5rem', display: 'flex', alignItems: 'center' }}>
+          <span style={{ fontFamily: "'Mr De Haviland', cursive", color: "#FF5656", fontSize: "1.8rem", fontWeight: "400", marginRight: "5px" }}>
+            Shree
+          </span>
+          <span style={{ fontFamily: "'Nunito Sans', sans-serif", color: "#000", fontSize: "1.2rem", fontWeight: "800", letterSpacing: "-0.5px" }}>
+            OPTICAL
+          </span>
+        </div>
 
         {/* Nav Links */}
         <ul style={{
