@@ -73,23 +73,25 @@ const HeroSection = () => {
       {/* <div className="absolute inset-0 bg-black bg-opacity-50 z-10" /> */}
 
       {/* Text Content — left-aligned, matches image */}
-      <div className="absolute inset-0 z-20 flex items-center container w-[100%] ">
-        <div className={`2xl:pr-12 max-w-2xl ${HeaderData[current].textOffset}`}>
-          <h1 className="text-white text-xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4">
-            {HeaderData[current].title}
-          </h1>
-          {/* Red divider line */}
-          
-         <p className="!text-black !font-normal text-xs md:text-base lg:text-lg leading-relaxed w-7/12">
-          {HeaderData[current].subtitle}
-        </p>
+      <div className="absolute inset-0 z-20 flex items-center">
+        <div className="container mx-auto px-4 md:px-8 lg:px-16">
+          <div className={`max-w-3xl ${current === 0 ? "md:ml-20" : "md:ml-10"}`}>
+            <h1 className="text-white text-3xl md:text-5xl lg:text-7xl font-bold leading-[1.1] mb-6 drop-shadow-lg">
+              {HeaderData[current].title}
+            </h1>
+            
+            <p className="text-secondary-dark md:text-black font-medium text-sm md:text-lg lg:text-xl leading-relaxed w-full md:w-3/4 lg:w-2/3 mb-8 drop-shadow-sm">
+              {HeaderData[current].subtitle}
+            </p>
 
-        {/* Visit Now Button */}
-        <button className="mt-6 flex items-center gap-3 bg-primary text-white font-instrument font-bold text-sm lg:text-base px-8 py-3 hover:bg-primary/90 transition-all duration-300">
-          Visit Now
-          <img src={FrameIcon} alt="arrow" className="w-8 h-8" />
-        </button>
-
+            {/* Visit Now Button */}
+            <button className="flex items-center gap-4 bg-primary text-white font-instrument font-bold text-base lg:text-lg px-8 py-4 rounded-sm hover:bg-secondary transition-all duration-300 shadow-xl group">
+              Visit Now
+              <div className="bg-white/20 p-1 rounded-full group-hover:bg-white/40 transition-colors">
+                <img src={FrameIcon} alt="arrow" className="w-6 h-6 lg:w-8 lg:h-8" />
+              </div>
+            </button>
+          </div>
         </div>
       </div>
 
