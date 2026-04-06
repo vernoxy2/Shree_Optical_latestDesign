@@ -13,9 +13,10 @@ const Home = () => {
       <Navbar/>
         <HeroSection/>
         <Shop/>
+        <BrandSupport/>
         <EyeStylishCombo />
         <AboutUs/>
-        <BrandSupport/>
+        
         <WhychooseUs/>
 
 

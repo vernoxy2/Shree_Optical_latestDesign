@@ -4,13 +4,13 @@ import StylishSunglasses from "./StylishSunglasses";
 
 const EyeStylishCombo = () => {
   return (
-    <section className="bg-[#FFFDFB] overflow-hidden">
+    <section className="bg-[#FFF5F0] overflow-hidden">
       {/* Eyeglasses Section */}
       <EyeGlasses />
 
       {/* Elegant Divider Line - Matching Figma */}
-      <div className="container mx-auto px-10 md:px-20">
-        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      <div className="container mx-auto px-4 lg:px-12 py-8">
+        <div className="w-full border-t border-gray-200/60 shadow-sm" />
       </div>
 
       {/* Stylish Sunglasses Section */}
