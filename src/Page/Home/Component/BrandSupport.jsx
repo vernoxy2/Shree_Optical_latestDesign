@@ -15,7 +15,7 @@ const brands = [
 
 const BrandSupport = () => {
   return (
-    <section className="bg-white overflow-hidden">
+    <section className="bg-white overflow-hidden py-16">
 
       {/* Scrolling marquee text */}
       <div
@@ -36,7 +36,8 @@ const BrandSupport = () => {
                 fontWeight: 900,
                 fontSize: "89.13px",
                 lineHeight: "122px",
-                color: "rgba(255, 86, 86, 0.08)",
+                color: "transparent",
+                WebkitTextStroke: "1.5px rgba(255, 86, 86, 0.35)",
                 whiteSpace: "nowrap",
                 paddingRight: "48px",
                 userSelect: "none",
@@ -62,8 +63,8 @@ const BrandSupport = () => {
         </div>
       </div>
 
-      {/* Brand Cards Row — single line */}
-      <div className="container flex items-center justify-between gap-4 py-8">
+      {/* Brand Cards Row */}
+      <div className="container flex items-center justify-between gap-4 py-12">
         {brands.map((brand, index) => (
           <div
             key={brand.id}
