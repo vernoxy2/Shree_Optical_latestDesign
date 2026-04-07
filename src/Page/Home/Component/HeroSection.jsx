@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Slide1 from "../../../Assets/HeroSection/Img1.webp";
 import Slide2 from "../../../Assets/HeroSection/Img2.webp";
 //import Slide3 from "../../../Assets/HomePage/HomeSliderImg/slider-3.png";
-import FrameIcon from "../../../Assets/HeroSection/red white arrow.svg";
+import FrameIcon from "../../../Assets/HeroSection/white arrow.svg";
 import Popup from "./Popup";
 
 const HeaderData = [
@@ -75,7 +75,7 @@ const HeroSection = () => {
       {/* Text Content — left-aligned, matches image */}
       <div className="absolute inset-0 z-20 flex items-center">
         <div className="container mx-auto px-4 md:px-8 lg:px-16">
-          <div className={`max-w-3xl ${current === 0 ? "md:ml-20" : "md:ml-10"}`}>
+          <div className="max-w-3xl md:ml-40">
             <h1 className="text-white text-3xl md:text-5xl lg:text-7xl font-bold leading-[1.1] mb-6 drop-shadow-lg">
               {HeaderData[current].title}
             </h1>
@@ -85,11 +85,22 @@ const HeroSection = () => {
             </p>
 
             {/* Visit Now Button */}
-            <button className="flex items-center gap-4 bg-primary text-white font-instrument font-bold text-base lg:text-lg px-8 py-4 rounded-sm hover:bg-secondary transition-all duration-300 shadow-xl group">
+            <button className="flex items-center gap-3 bg-secondary text-white font-instrument font-bold text-base lg:text-lg px-8 py-4 rounded-sm hover:bg-primary transition-all duration-300 shadow-xl group">
               Visit Now
-              <div className="bg-white/20 p-1 rounded-full group-hover:bg-white/40 transition-colors">
-                <img src={FrameIcon} alt="arrow" className="w-6 h-6 lg:w-8 lg:h-8" />
-              </div>
+              <span className="relative w-6 h-6 lg:w-7 lg:h-7 overflow-hidden flex items-center justify-center">
+                {/* exits top-right */}
+                <img
+                  src={FrameIcon}
+                  alt="arrow"
+                  className="absolute w-6 h-6 lg:w-8 lg:h-8 transition-all duration-700 ease-in-out group-hover:-translate-y-full group-hover:translate-x-full group-hover:opacity-0"
+                />
+                {/* enters from bottom-left */}
+                <img
+                  src={FrameIcon}
+                  alt="arrow"
+                  className="absolute w-6 h-6 lg:w-8 lg:h-8 transition-all duration-700 ease-in-out translate-y-full -translate-x-full opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100"
+                />
+              </span>
             </button>
           </div>
         </div>
