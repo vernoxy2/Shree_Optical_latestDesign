@@ -62,14 +62,13 @@ const BrandSupport = () => {
         </div>
       </div>
 
-      {/* Brand Cards Row */}
-      <div className="container flex items-center justify-center gap-6 flex-wrap py-2">
+      {/* Brand Cards Row — single line */}
+      <div className="container flex items-center justify-between gap-4 py-8">
         {brands.map((brand, index) => (
           <div
             key={brand.id}
-            className="group flex items-center justify-center bg-white rounded-[16px] cursor-pointer overflow-hidden"
+            className="group flex items-center justify-center bg-white rounded-[16px] cursor-pointer overflow-hidden flex-1"
             style={{
-              width: "182px",
               height: "107px",
               border: "1.5px solid #E5E5E5",
               transition: "border-color 0.8s ease, box-shadow 0.8s ease",
