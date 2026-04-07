@@ -14,6 +14,7 @@ import glass6 from "../../../Assets/EyeGlasses/glass6.webp";
 import LeftArrow from "../../../Assets/EyeGlasses/white left arrow.svg";
 import RightArrow from "../../../Assets/EyeGlasses/white right arrow.svg";
 import BlackArrow from "../../../Assets/EyeGlasses/black arrow.svg";
+import WhiteArrow from "../../../Assets/EyeGlasses/white arrow.svg";
 
 const glassesData = [
   { id: 0, type: "Round",    personImg: img1, glassesImg: glass1 },
@@ -108,14 +109,14 @@ const EyeGlasses = () => {
                 <span className="font-medium">Buy Now</span>
                 <span className="relative w-6 h-6 overflow-hidden flex items-center justify-center">
                   <img
-                    src={BlackArrow}
+                    src={WhiteArrow}
                     alt="arrow"
-                    className="absolute transition-all duration-500 ease-in-out group-hover:-translate-y-6 group-hover:translate-x-6 group-hover:opacity-0 w-6 h-6 invert"
+                    className="absolute transition-all duration-500 ease-in-out group-hover:-translate-y-6 group-hover:translate-x-6 group-hover:opacity-0 w-6 h-6"
                   />
                   <img
-                    src={BlackArrow}
+                    src={WhiteArrow}
                     alt="arrow"
-                    className="absolute transition-all duration-500 ease-in-out translate-y-6 -translate-x-6 opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100 w-6 h-6 invert"
+                    className="absolute transition-all duration-500 ease-in-out translate-y-6 -translate-x-6 opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100 w-6 h-6"
                   />
                 </span>
               </button>
