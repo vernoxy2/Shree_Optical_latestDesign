@@ -1,148 +1,279 @@
 import React from "react";
+import Icon1W from "../../../Assets/WhychooseUs/Frame 87.svg";
+import Icon1P from "../../../Assets/WhychooseUs/Frame 78.svg";
+import Icon2W from "../../../Assets/WhychooseUs/Frame 83.svg";
+import Icon2P from "../../../Assets/WhychooseUs/Frame 79.svg";
+import Icon3W from "../../../Assets/WhychooseUs/Frame 84.svg";
+import Icon3P from "../../../Assets/WhychooseUs/Frame 80.svg";
+import Icon4W from "../../../Assets/WhychooseUs/Frame 85.svg";
+import Icon4P from "../../../Assets/WhychooseUs/Frame 81.svg";
+import Icon5W from "../../../Assets/WhychooseUs/Frame 86.svg";
+import Icon5P from "../../../Assets/WhychooseUs/Frame 82.svg";
 
 const whyChooseUsData = [
   {
     id: 1,
     title: "State-of-the-art Testing",
-    description: "Experience the difference with our commitment to vision, style, and genuine care trusted by thousands of happy customers.",
-    icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="48" height="48" rx="24" fill="rgba(255,255,255,0.1)"/>
-        <path d="M14 24C14 20.6863 16.6863 18 20 18H28C31.3137 18 34 20.6863 34 24V24C34 27.3137 31.3137 30 28 30H20C16.6863 30 14 27.3137 14 24V24Z" stroke="white" strokeWidth="2"/>
-        <circle cx="20" cy="24" r="3" stroke="white" strokeWidth="2"/>
-        <circle cx="28" cy="24" r="3" stroke="white" strokeWidth="2"/>
-        <path d="M23 24H25" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-      </svg>
-    ),
+    description:
+      "Experience the difference with our commitment to vision, style, and genuine care trusted by thousands of happy customers.",
+    whiteIcon: Icon1W,
+    pinkIcon: Icon1P,
   },
   {
     id: 2,
     title: "Curated Eyewear Brands",
-    description: "Stylish, high-quality eyewear from thoughtfully selected premium brands.",
-    icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="48" height="48" rx="24" fill="rgba(255,255,255,0.1)"/>
-        <path d="M24 28C27.3137 28 30 25.3137 30 22C30 18.6863 27.3137 16 24 16C20.6863 16 18 18.6863 18 22C18 25.3137 20.6863 28 24 28Z" stroke="white" strokeWidth="2"/>
-        <path d="M16 34C16 30.6863 18.6863 28 22 28H26C29.3137 28 32 30.6863 32 34" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-      </svg>
-    ),
+    description:
+      "Stylish, high-quality eyewear from thoughtfully selected premium brands.",
+    whiteIcon: Icon2W,
+    pinkIcon: Icon2P,
   },
   {
     id: 3,
-    title: "State-of-the-art Testing",
-    description: "Experience the difference with our commitment to vision, style, and genuine care trusted by thousands of happy customers.",
-    icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="48" height="48" rx="24" fill="rgba(255,255,255,0.1)"/>
-        <circle cx="24" cy="24" r="8" stroke="white" strokeWidth="2"/>
-        <circle cx="24" cy="24" r="3" fill="white"/>
-        <path d="M24 12V14M24 34V36M12 24H14M34 24H36" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-      </svg>
-    ),
+    title: "Personalized Consultations",
+    description:
+      "Expert guidance tailored to your unique vision and eyewear needs.",
+    whiteIcon: Icon3W,
+    pinkIcon: Icon3P,
   },
   {
     id: 4,
-    title: "State-of-the-art Testing",
-    description: "Experience the difference with our commitment to vision, style, and genuine care trusted by thousands of happy customers.",
-    icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="48" height="48" rx="24" fill="rgba(255,255,255,0.1)"/>
-        <path d="M24 32L21 35L17 31M31 17L24 13L17 17V24C17 28.5 21 32 24 33C27 32 31 28.5 31 24V17Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
+    title: "Affordable Pricing",
+    description:
+      "Transparent, competitive prices without compromising quality or service.",
+    whiteIcon: Icon5W,
+    pinkIcon: Icon5P,
   },
   {
     id: 5,
-    title: "State-of-the-art Testing",
-    description: "Experience the difference with our commitment to vision, style, and genuine care trusted by thousands of happy customers.",
-    icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="48" height="48" rx="24" fill="rgba(255,255,255,0.1)"/>
-        <path d="M14 24C14 20.6863 16.6863 18 20 18H28C31.3137 18 34 20.6863 34 24V24C34 27.3137 31.3137 30 28 30H20C16.6863 30 14 27.3137 14 24V24Z" stroke="white" strokeWidth="2"/>
-        <circle cx="20" cy="24" r="3" stroke="white" strokeWidth="2"/>
-        <circle cx="28" cy="24" r="3" stroke="white" strokeWidth="2"/>
-      </svg>
-    ),
-  },
-  {
-    id: 6,
-    title: "State-of-the-art Testing",
-    description: "Experience the difference with our commitment to vision, style, and genuine care trusted by thousands of happy customers.",
-    icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="48" height="48" rx="24" fill="rgba(255,255,255,0.1)"/>
-        <circle cx="24" cy="24" r="8" stroke="white" strokeWidth="2"/>
-        <circle cx="24" cy="24" r="3" fill="white"/>
-        <path d="M24 12V14M24 34V36M12 24H14M34 24H36" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-      </svg>
-    ),
+    title: "Trusted by Thousands",
+    description:
+      "Thousands of happy customers and glowing reviews - your satisfaction, our priority.",
+    whiteIcon: Icon4W,
+    pinkIcon: Icon4P,
   },
 ];
 
 const WhychooseUs = () => {
   return (
-    <section
-      className="relative py-20 overflow-hidden"
-      style={{
-        backgroundColor: "#1a1a1a",
-        backgroundImage: "url('https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=1440&q=80')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundBlendMode: "overlay",
-      }}
-    >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/75" />
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400&family=Nunito+Sans:wght@700;900&display=swap');
 
-      <div className="container relative z-10">
-        <div className="flex flex-col lg:flex-row gap-12">
+        .why-card {
+          background-color: rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.4s ease;
+          min-height: 360px;
+          padding: 32px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          position: relative;
+          overflow: hidden;
+          cursor: pointer;
+          transform: scale(1);
+        }
 
-          {/* Left side — Title + Description */}
-          <div className="lg:w-1/4 flex flex-col justify-center">
-            <h2
-              className="text-4xl font-bold text-white mb-6"
-              style={{ fontFamily: "'Nunito Sans', sans-serif" }}
-            >
-              Why Choose Us?
-            </h2>
-            <p className="text-gray-300 text-base leading-relaxed mb-8">
-              Experience the difference with our commitment to vision, style, and genuine care trusted by thousands of happy customers.
-            </p>
+        .why-card:hover {
+          background-color: #ffffff;
+          border-color: #E5E7EB;
+          transform: scale(1.03);
+        }
+
+        .why-card .card-title {
+          font-family: 'Nunito Sans', sans-serif;
+          font-weight: 700;
+          font-size: 22px;
+          line-height: 1.2;
+          color: #ffffff;
+          margin: 0;
+          flex: 1;
+          transition: color 0.4s ease;
+        }
+
+        .why-card:hover .card-title {
+          color: #FF5656;
+        }
+
+        .why-card .card-divider {
+          width: 100%;
+          height: 2px;
+          margin-bottom: 24px;
+          position: relative;
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .why-card .card-divider::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 0%;
+          background-color: #FF5656;
+          transition: width 0.6s ease;
+        }
+
+        .why-card:hover .card-divider::after {
+          width: 100%;
+        }
+
+        .why-card .card-description {
+          font-family: 'Instrument Sans', sans-serif;
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 26px;
+          color: #ffffff;
+          margin: 0;
+          transition: color 0.4s ease;
+        }
+
+        .why-card:hover .card-description {
+          color: #111827;
+        }
+
+        .why-card .icon-white {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          transition: opacity 0.4s ease;
+          opacity: 1;
+        }
+
+        .why-card:hover .icon-white {
+          opacity: 0;
+        }
+
+        .why-card .icon-pink {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          transition: opacity 0.4s ease;
+          opacity: 0;
+        }
+
+        .why-card:hover .icon-pink {
+          opacity: 1;
+        }
+      `}</style>
+
+      <section className="relative overflow-hidden bg-[#0F0F0F] py-20">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=1440&q=80')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: "rgba(10, 10, 10, 0.94)" }}
+        />
+
+        <div
+          className="relative z-10 container mx-auto px-4"
+          style={{ maxWidth: "1240px" }}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            {/* Header Card */}
             <div
-              className="w-16 h-1 rounded-full"
-              style={{ backgroundColor: "#FF5656" }}
-            />
-          </div>
-
-          {/* Right side — Cards Grid */}
-          <div className="lg:w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {whyChooseUsData.map((feature) => (
-              <div
-                key={feature.id}
-                className="p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-500 hover:-translate-y-1"
-                style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
+              className="p-6 flex flex-col justify-start items-start"
+              style={{ minHeight: "340px" }}
+            >
+              <h2
+                style={{
+                  fontFamily: "'Nunito Sans', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "45px",
+                  lineHeight: "1.1",
+                  color: "white",
+                  margin: "0 0 15px 0",
+                  whiteSpace: "nowrap",
+                }}
               >
-                {/* Icon + Title row */}
-                <div className="flex items-center gap-4 mb-4">
-                  {feature.icon}
-                  <h3
-                    className="text-white font-bold text-lg leading-snug"
-                    style={{ fontFamily: "'Nunito Sans', sans-serif" }}
+                Why Choose Us?
+              </h2>
+
+              <p
+                style={{
+                  fontFamily: "'Instrument Sans', sans-serif",
+                  fontWeight: 400,
+                  fontSize: "20px",
+                  lineHeight: "26px",
+                  color: "#D1D5DB",
+                  margin: "0 0 24px 0",
+                }}
+              >
+                Experience the difference with our commitment to vision, style,
+                and genuine care trusted by thousands of happy customers.
+              </p>
+
+              <div
+                style={{
+                  width: "190px",
+                  height: "3px",
+                  backgroundColor: "#FF5656",
+                  borderRadius: "9999px",
+                }}
+              />
+            </div>
+
+            {/* Feature Cards */}
+            {whyChooseUsData.map((feature) => (
+              <div key={feature.id} className="why-card">
+
+                {/* Icon + Title Row */}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "16px",
+                    marginBottom: "32px",
+                    width: "100%",
+                  }}
+                >
+                  <div
+                    style={{
+                      flexShrink: 0,
+                      position: "relative",
+                      width: "80px",
+                      height: "80px",
+                    }}
                   >
-                    {feature.title}
-                  </h3>
+                    <img
+                      src={feature.whiteIcon}
+                      alt={feature.title}
+                      className="icon-white"
+                    />
+                    <img
+                      src={feature.pinkIcon}
+                      alt={feature.title}
+                      className="icon-pink"
+                    />
+                  </div>
+
+                  <h3 className="card-title">{feature.title}</h3>
                 </div>
+
+                {/* Divider */}
+                <div className="card-divider" />
+
                 {/* Description */}
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  {feature.description}
-                </p>
+                <p className="card-description">{feature.description}</p>
               </div>
             ))}
-          </div>
 
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
