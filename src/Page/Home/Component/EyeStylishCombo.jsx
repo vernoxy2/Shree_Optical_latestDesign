@@ -10,7 +10,7 @@ const EyeStylishCombo = () => {
 
       {/* Elegant Divider Line - Matching Figma */}
       <div className="container mx-auto px-4 lg:px-12 py-8">
-        <div className="w-full border-t border-gray-200/60 shadow-sm" />
+        <div className="w-full border-t border-gray-200" />
       </div>
 
       {/* Stylish Sunglasses Section */}

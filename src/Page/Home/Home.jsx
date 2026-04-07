@@ -7,6 +7,7 @@ import Navbar from './Component/Layout/Navbar'
 import BrandSupport from './Component/BrandSupport'
 import WhychooseUs from './Component/WhychooseUs'
 import ContactUs from './Component/ContactUs'
+import Footer from './Component/Layout/Footer'
 
 const Home = () => {
   return (
@@ -20,7 +21,7 @@ const Home = () => {
         
         <WhychooseUs/>
         <ContactUs/>
-
+        <Footer/>
 
     </div>
   )
