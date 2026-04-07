@@ -6,6 +6,7 @@ import AboutUs from './Component/AboutUs'
 import Navbar from './Component/Layout/Navbar'
 import BrandSupport from './Component/BrandSupport'
 import WhychooseUs from './Component/WhychooseUs'
+import ContactUs from './Component/ContactUs'
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
         <AboutUs/>
         
         <WhychooseUs/>
+        <ContactUs/>
 
 
     </div>
