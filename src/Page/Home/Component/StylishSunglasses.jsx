@@ -14,6 +14,7 @@ import sunglass6 from "../../../Assets/StylishSunglasses/sunglass6.webp";
 import LeftArrow from "../../../Assets/StylishSunglasses/white left arrow.svg";
 import RightArrow from "../../../Assets/StylishSunglasses/white right arrow.svg";
 import BlackArrow from "../../../Assets/StylishSunglasses/black arrow.svg";
+import WhiteArrow from "../../../Assets/EyeGlasses/white arrow.svg";
 
 const sunglassesData = [
   { id: 0, type: "Aviator",   personImg: sgimg1, glassesImg: sunglass1 },
@@ -81,12 +82,12 @@ const StylishSunglasses = () => {
                   <img
                     src={BlackArrow}
                     alt="arrow"
-                    className="absolute transition-all duration-500 ease-in-out group-hover:-translate-y-6 group-hover:translate-x-6 group-hover:opacity-0 w-6 h-6 invert"
+                    className="absolute transition-all duration-500 ease-in-out group-hover:-translate-y-6 group-hover:translate-x-6 group-hover:opacity-0 w-6 h-6"
                   />
                   <img
                     src={BlackArrow}
                     alt="arrow"
-                    className="absolute transition-all duration-500 ease-in-out translate-y-6 -translate-x-6 opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100 w-6 h-6 invert"
+                    className="absolute transition-all duration-500 ease-in-out translate-y-6 -translate-x-6 opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100 w-6 h-6"
                   />
                 </span>
               </button>
