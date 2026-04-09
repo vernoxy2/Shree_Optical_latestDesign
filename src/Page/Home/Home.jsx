@@ -7,6 +7,8 @@ import Navbar from './Component/Layout/Navbar'
 import BrandSupport from './Component/BrandSupport'
 import WhychooseUs from './Component/WhychooseUs'
 import OurhappyClients from './Component/OurhappyClients'
+import ContactUs from './Component/ContactUs'
+import Footer from './Component/Layout/Footer'
 
 const Home = () => {
   return (
@@ -18,8 +20,12 @@ const Home = () => {
         <EyeStylishCombo />
         <AboutUs/>
         <WhychooseUs/>
+
         <div style={{ height: "50px", backgroundColor: "white" }} />
         <OurhappyClients/>
+        <ContactUs/>
+        <Footer/>
+
     </div>
   )
 }
