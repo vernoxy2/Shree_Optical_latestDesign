@@ -1,15 +1,22 @@
 import React from "react";
 import Logo from "../../../../Assets/Footer/Mask group.svg";
 import WhiteArrow from "../../../../Assets/Navbar/white arrow.svg";
+import FooterBg from "../../../../Assets/Footer/ChatGPT Image Jan 29, 2026, 04_27_45 PM 1-Picsart-AiImageEnhancer.webp";
+import LocationIcon from "../../../../Assets/Footer/Frame 97.svg";
+import PhoneIcon from "../../../../Assets/Footer/Frame 98.svg";
+import EmailIcon from "../../../../Assets/Footer/Frame 99.svg";
+import FacebookIcon from "../../../../Assets/Footer/facebook.svg";
+import InstaIcon from "../../../../Assets/Footer/insta.svg";
+import TwitterIcon from "../../../../Assets/Footer/twitter.svg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About Us", href: "#about" },
-    { name: "Products", href: "#products" },
-    { name: "Contact Us", href: "#contact" },
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/#about" },
+    { name: "Products", href: "/#products" },
+    { name: "Contact Us", href: "/contact" },
   ];
 
   const categories = [
@@ -20,10 +27,9 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: "Facebook", href: "#" },
-    { name: "Instagram", href: "#" },
-    { name: "Twitter", href: "#" },
-    { name: "LinkedIn", href: "#" },
+    { name: "Facebook", href: "#", icon: FacebookIcon },
+    { name: "Instagram", href: "#", icon: InstaIcon },
+    { name: "Twitter", href: "#", icon: TwitterIcon },
   ];
 
   const scrollToTop = () => {
@@ -31,8 +37,19 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-secondary text-white pt-16 pb-8 overflow-hidden relative">
-      <div className="container mx-auto px-4 sm:px-8 lg:px-[4rem] xl:px-[5rem] 2xl:px-[6rem]">
+    <footer className="bg-black text-white pt-16 pb-8 overflow-hidden relative">
+      {/* Background Image with Overlay - True Black and Grayscale */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={FooterBg} 
+          alt="Footer Background" 
+          className="w-full h-full object-cover opacity-60 grayscale"
+        />
+        {/* Deep Black Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90"></div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-8 lg:px-[4rem] xl:px-[5rem] 2xl:px-[6rem] relative z-10">
         
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -43,21 +60,21 @@ const Footer = () => {
               <img
                 src={Logo}
                 alt="Shree Optical"
-                className="h-[90px] md:h-[100px] w-auto object-contain "
+                className="h-[90px] md:h-[100px] w-auto object-contain invert brightness-0"
               />
             </div>
-            <p className="text-gray-400 font-inter text-sm leading-relaxed max-w-xs">
-              Quality eyewear for every style and need. We offer trendy frames, sunglasses, and lenses with expert eye care and personalized service.
-            </p>
+        <p className="text-gray-400 font-poppins font-normal max-w-xs" style={{ fontSize: "15.83px", lineHeight: "130%", letterSpacing: "0%" }}>
+  <span className="font-bold text-white">Shree Optical</span> offers stylish eyewear, sunglasses, lenses, and eyeglasses with modern designs, premium quality, fashion-forward trends, and customer focused service.
+</p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.href}
-                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
+                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group overflow-hidden"
                   aria-label={social.name}
                 >
-                  <span className="text-xs font-bold uppercase tracking-wider">{social.name[0]}</span>
+                  <img src={social.icon} alt={social.name} className="w-5 h-5 invert brightness-0 group-hover:scale-110 transition-transform duration-300" />
                 </a>
               ))}
             </div>
@@ -112,26 +129,40 @@ const Footer = () => {
               <span className="absolute -bottom-2 left-0 w-12 h-1 bg-primary rounded-full"></span>
             </h4>
             <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center shrink-0 border border-white/10 group-hover:border-primary/50 transition-colors">
-                  <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
+              <div className="flex items-start gap-4 group">
+                <div className="w-12 h-12 flex items-center justify-center shrink-0">
+                  <img 
+                    src={LocationIcon} 
+                    alt="Location" 
+                    className="w-full h-full"
+                  />
                 </div>
-                <p className="text-gray-400 font-inter text-sm leading-relaxed">
-                  123 Vision Street, Optical Plaza, New York, NY 10001
+                <p className="text-gray-400 font-inter text-sm leading-relaxed self-center">
+                  pramukh sannidhya complex, B-5, Abrama Village, Valsad, Gujarat 396002
                 </p>
               </div>
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
-                  <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
+              <div className="flex items-start gap-4 group">
+                <div className="w-12 h-12 flex items-center justify-center shrink-0">
+                  <img 
+                    src={PhoneIcon} 
+                    alt="Phone" 
+                    className="w-full h-full"
+                  />
                 </div>
-                <p className="text-gray-400 font-inter text-sm">
-                  +1 (234) 567-890<br />
-                  +1 (234) 567-891
+                <p className="text-gray-400 font-inter text-sm self-center">
+                  +91 63558 38127
+                </p>
+              </div>
+              <div className="flex items-start gap-4 group">
+                <div className="w-12 h-12 flex items-center justify-center shrink-0">
+                  <img 
+                    src={EmailIcon} 
+                    alt="Email" 
+                    className="w-full h-full"
+                  />
+                </div>
+                <p className="text-gray-400 font-inter text-sm self-center">
+                  sshreeoptical@gmail.com
                 </p>
               </div>
             </div>
@@ -168,10 +199,6 @@ const Footer = () => {
           </button>
         </div>
       </div>
-
-      {/* Background Decorative Elements */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2"></div>
     </footer>
   );
 };
