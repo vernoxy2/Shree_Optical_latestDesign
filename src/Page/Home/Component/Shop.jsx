@@ -19,7 +19,7 @@ const Shop = () => {
   const expandedIndex = hoveredIndex !== null ? hoveredIndex : activeIndex;
 
   return (
-    <section className="py-20" style={{ backgroundColor: "#FFF5F0" }}>
+    <section id="products" className="py-20" style={{ backgroundColor: "#FFF5F0" }}>
       <div className="container">
         {/* Section Heading */}
         <div className="mb-16 text-center">

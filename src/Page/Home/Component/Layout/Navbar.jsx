@@ -1,27 +1,30 @@
 import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../../../../Assets/Navbar/Mask group.svg";
 import FrameIcon from "../../../../Assets/Navbar/white arrow.svg";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState("Home");
+  const location = useLocation();
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About Us", href: "#about" },
-    { name: "Products", href: "#products" },
-    { name: "Contact Us", href: "#contact" },
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/#about" },
+    { name: "Products", href: "/#products" },
+    { name: "Contact Us", href: "/contact" },
   ];
 
-  const getLinkClass = (name) => {
+  const getLinkClass = (href) => {
     const base = "font-instrument text-[14px] lg:text-[16px] tracking-[2px] transition-all duration-300 hover:text-primary";
-    if (activeLink === name) return base + " text-primary font-bold";
+    const isActive = location.pathname === href;
+    if (isActive) return base + " text-primary font-bold";
     return base + " text-secondary font-normal";
   };
 
-  const getMobileLinkClass = (name) => {
+  const getMobileLinkClass = (href) => {
     const base = "font-instrument text-xl uppercase tracking-[3px] transition-colors hover:text-primary";
-    if (activeLink === name) return base + " text-primary font-bold";
+    const isActive = location.pathname === href;
+    if (isActive) return base + " text-primary font-bold";
     return base + " text-white font-normal";
   };
 
@@ -32,25 +35,24 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-8 lg:px-[4rem] xl:px-[5rem] 2xl:px-[6rem] flex items-center justify-between h-full">
 
         {/* Logo */}
-        <div className="flex items-center cursor-pointer shrink-0">
+        <Link to="/" className="flex items-center cursor-pointer shrink-0">
           <img
             src={Logo}
             alt="Shree Optical"
             className="h-[45px] md:h-[55px] lg:h-[63px] w-auto object-contain"
           />
-        </div>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center ml-auto mr-4 lg:mr-6 space-x-10 lg:space-x-12 xl:space-x-14">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
-              onClick={() => setActiveLink(link.name)}
-              className={getLinkClass(link.name)}
+              to={link.href}
+              className={getLinkClass(link.href)}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -98,14 +100,14 @@ const Navbar = () => {
 
           <div className="flex flex-col space-y-10">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
-                onClick={() => { setMenuOpen(false); setActiveLink(link.name); }}
-                className={getMobileLinkClass(link.name)}
+                to={link.href}
+                onClick={() => setMenuOpen(false)}
+                className={getMobileLinkClass(link.href)}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
 
             <div className="pt-6">
