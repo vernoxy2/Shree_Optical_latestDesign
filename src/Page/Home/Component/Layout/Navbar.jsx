@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../../../../Assets/Navbar/Mask group.svg";
 import FrameIcon from "../../../../Assets/Navbar/white arrow.svg";
 
-const Navbar = () => {
+const Navbar = ({ heroRef }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [heroVisible, setHeroVisible] = useState(true);
   const location = useLocation();
+
+  useEffect(() => {
+    if (!heroRef?.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroVisible(entry.isIntersecting),
+      { threshold: 0 } // triggers the moment hero starts leaving viewport
+    );
+
+    observer.observe(heroRef.current);
+    return () => observer.disconnect();
+  }, [heroRef]);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -15,23 +28,33 @@ const Navbar = () => {
   ];
 
   const getLinkClass = (href) => {
-    const base = "font-instrument text-[14px] lg:text-[16px] tracking-[2px] transition-all duration-300 hover:text-primary";
+    const base =
+      "font-instrument text-[14px] lg:text-[16px] tracking-[2px] transition-all duration-300 hover:text-primary";
     const isActive = location.pathname === href;
     if (isActive) return base + " text-primary font-bold";
     return base + " text-secondary font-normal";
   };
 
   const getMobileLinkClass = (href) => {
-    const base = "font-instrument text-xl uppercase tracking-[3px] transition-colors hover:text-primary";
+    const base =
+      "font-instrument text-xl uppercase tracking-[3px] transition-colors hover:text-primary";
     const isActive = location.pathname === href;
     if (isActive) return base + " text-primary font-bold";
     return base + " text-white font-normal";
   };
 
-  const sidebarClass = "fixed top-0 right-0 h-full w-[80%] max-w-[320px] bg-secondary transform transition-transform duration-500 ease-in-out z-[60] md:hidden " + (menuOpen ? "translate-x-0" : "translate-x-full");
+  const sidebarClass =
+    "fixed top-0 right-0 h-full w-[80%] max-w-[320px] bg-secondary transform transition-transform duration-500 ease-in-out z-[60] md:hidden " +
+    (menuOpen ? "translate-x-0" : "translate-x-full");
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 h-[80px] lg:h-[96px] bg-white md:bg-white/10 backdrop-blur-[10px] flex items-center border-b border-gray-100 md:border-white/5">
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 h-[80px] lg:h-[96px] flex items-center border-b transition-all duration-300 ${
+        heroVisible
+          ? "bg-white md:bg-white/10 backdrop-blur-[10px] border-gray-100 md:border-white/5"
+          : "bg-white shadow-sm border-gray-100"
+      }`}
+    >
       <div className="container mx-auto px-4 sm:px-8 lg:px-[4rem] xl:px-[5rem] 2xl:px-[6rem] flex items-center justify-between h-full">
 
         {/* Logo */}
@@ -79,8 +102,19 @@ const Navbar = () => {
             className="text-secondary focus:outline-none p-2"
             aria-label="Toggle menu"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-8 w-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
             </svg>
           </button>
         </div>
@@ -90,10 +124,28 @@ const Navbar = () => {
       <div className={sidebarClass}>
         <div className="p-8 flex flex-col h-full">
           <div className="flex justify-between items-center mb-16">
-            <img src={Logo} alt="Shree Optical" className="h-10 invert brightness-0" />
-            <button onClick={() => setMenuOpen(false)} className="text-white p-2">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <img
+              src={Logo}
+              alt="Shree Optical"
+              className="h-10 invert brightness-0"
+            />
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="text-white p-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-8 w-8"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>

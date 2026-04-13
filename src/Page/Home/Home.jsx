@@ -1,5 +1,5 @@
-import React from 'react'
-import HeroSection from  './Component/HeroSection'
+import React, { useRef } from 'react'
+import HeroSection from './Component/HeroSection'
 import Shop from './Component/Shop'
 import EyeStylishCombo from './Component/EyeStylishCombo'
 import ClearLenses from './Component/ClearLenses'
@@ -12,22 +12,22 @@ import ContactUs from './Component/ContactUs'
 import Footer from './Component/Layout/Footer'
 
 const Home = () => {
+  const heroRef = useRef(null);
+
   return (
     <div>
-      <Navbar/>
-        <HeroSection/>
-        <Shop/>
-        <BrandSupport/>
-        <EyeStylishCombo />
-        <ClearLenses />
-        <AboutUs/>
-        <WhychooseUs/>
-
-        <div style={{ height: "50px", backgroundColor: "white" }} />
-        <OurhappyClients/>
-        <ContactUs/>
-        <Footer/>
-
+      <Navbar heroRef={heroRef} />
+      <HeroSection ref={heroRef} />
+      <Shop />
+      <BrandSupport />
+      <EyeStylishCombo />
+      <ClearLenses />
+      <AboutUs />
+      <WhychooseUs />
+      <div style={{ height: "50px", backgroundColor: "white" }} />
+      <OurhappyClients />
+      <ContactUs />
+      <Footer />
     </div>
   )
 }
