@@ -25,14 +25,14 @@ const Popup = ({ onClose }) => {
   const inputClass = "border border-gray-200 bg-gray-50 text-sm px-4 py-3 focus:outline-none focus:border-primary focus:bg-white font-inter text-secondary placeholder-gray-400 transition-colors duration-200 w-full";
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+    // Overlay — scrollable on tiny screens
+    <div className="fixed inset-0 z-[100] flex items-start justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto">
 
-      <div className="relative rounded-2xl p-[5px] bg-white shadow-2xl w-full max-w-[800px]">
+      <div className="relative rounded-2xl p-[5px] bg-white shadow-2xl w-full max-w-[800px] my-auto">
 
-        {/* Inner popup card — row on desktop, column on mobile */}
         <div className="flex flex-col md:flex-row overflow-hidden rounded-xl">
 
-          {/* Image — top on mobile, right on desktop */}
+          {/* Image — mobile top */}
           <div className="relative w-full h-[300px] md:hidden overflow-hidden rounded-t-xl">
             {images.map((img, index) => (
               <div
@@ -44,7 +44,6 @@ const Popup = ({ onClose }) => {
                 <img src={img} alt={`Popup ${index + 1}`} className="w-full h-full object-cover object-top" />
               </div>
             ))}
-            {/* Close Button on mobile image */}
             <button
               onClick={onClose}
               className="absolute top-3 right-3 z-[110] w-8 h-8 flex items-center justify-center"
@@ -54,10 +53,9 @@ const Popup = ({ onClose }) => {
             </button>
           </div>
 
-          {/* Left — Form */}
+          {/* Form */}
           <div className="flex flex-col justify-start px-6 py-6 md:px-10 md:py-10 w-full md:w-[55%] bg-white">
 
-            {/* Title */}
             <div className="mb-4 md:mb-6">
               <h2 className="text-3xl md:text-5xl font-bold font-nunito text-primary leading-tight">
                 Clarity Meets
@@ -78,7 +76,6 @@ const Popup = ({ onClose }) => {
               </p>
             </div>
 
-            {/* Form Fields */}
             <div className="flex flex-col gap-3">
               <input type="text" name="name" placeholder="Name*" value={form.name} onChange={handleChange} className={inputClass} />
               <input type="email" name="email" placeholder="Email*" value={form.email} onChange={handleChange} className={inputClass} />
@@ -91,7 +88,7 @@ const Popup = ({ onClose }) => {
             </div>
           </div>
 
-          {/* Right — Sliding Image (desktop only) */}
+          {/* Desktop right image */}
           <div className="relative hidden md:block w-[45%] overflow-hidden rounded-xl">
             {images.map((img, index) => (
               <div
@@ -103,7 +100,6 @@ const Popup = ({ onClose }) => {
                 <img src={img} alt={`Popup ${index + 1}`} className="w-full h-full object-cover" />
               </div>
             ))}
-            {/* Close Button on desktop image */}
             <button
               onClick={onClose}
               className="absolute top-3 right-3 z-[110] w-8 h-8 flex items-center justify-center"
