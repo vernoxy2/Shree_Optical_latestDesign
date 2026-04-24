@@ -25,9 +25,9 @@ const ContactUs = () => {
         />
 
         {/* Text Content */}
-        <div className="relative z-10 px-6 sm:px-8 md:px-16 lg:px-28 pt-10 pb-10 max-w-[55%] sm:max-w-[50%] md:max-w-[45%] lg:max-w-[500px]">
+        <div className="relative z-10 px-6 sm:px-8 md:px-16 lg:px-28 pt-10 pb-10 max-w-[55%] sm:max-w-[50%] md:max-w-[48%] lg:max-w-[520px]">
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-nunito mb-4 sm:mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-nunito mb-4 sm:mb-6 whitespace-nowrap">
             <span className="text-primary font-bold">Contact</span>{" "}
             <span className="text-secondary font-light">Us</span>
           </h2>
