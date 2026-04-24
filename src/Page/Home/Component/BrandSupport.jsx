@@ -15,18 +15,10 @@ const brands = [
 
 const BrandSupport = () => {
   return (
-    <section className="bg-white overflow-hidden py-16">
+    <section className="bg-white overflow-hidden py-10 md:py-16">
 
-      {/* Scrolling marquee text */}
-      <div
-        style={{
-          width: "100%",
-          height: "122px",
-          overflow: "hidden",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
+      {/* Scrolling marquee text — fluid font size so it never overflows */}
+      <div className="w-full overflow-hidden flex items-center" style={{ height: "clamp(60px, 12vw, 122px)" }}>
         <div className="marquee-track">
           {[...Array(12)].map((_, i) => (
             <span
@@ -34,12 +26,12 @@ const BrandSupport = () => {
               style={{
                 fontFamily: "'Nunito Sans', sans-serif",
                 fontWeight: 900,
-                fontSize: "89.13px",
-                lineHeight: "122px",
+                fontSize: "clamp(36px, 8vw, 89.13px)",
+                lineHeight: 1.37,
                 color: "transparent",
                 WebkitTextStroke: "1.5px rgba(255, 86, 86, 0.35)",
                 whiteSpace: "nowrap",
-                paddingRight: "48px",
+                paddingRight: "clamp(20px, 4vw, 48px)",
                 userSelect: "none",
                 pointerEvents: "none",
                 letterSpacing: "0.04em",
@@ -50,12 +42,12 @@ const BrandSupport = () => {
               <span
                 style={{
                   display: "inline-block",
-                  width: "18px",
-                  height: "18px",
+                  width: "clamp(10px, 1.5vw, 18px)",
+                  height: "clamp(10px, 1.5vw, 18px)",
                   borderRadius: "50%",
                   backgroundColor: "rgba(255, 86, 86, 0.25)",
                   verticalAlign: "middle",
-                  marginBottom: "8px",
+                  marginBottom: "6px",
                 }}
               />{" "}
             </span>
@@ -63,36 +55,39 @@ const BrandSupport = () => {
         </div>
       </div>
 
-      {/* Brand Cards Row */}
-      <div className="container flex items-center justify-between gap-4 py-12">
-        {brands.map((brand, index) => (
-          <div
-            key={brand.id}
-            className="group flex items-center justify-center bg-white rounded-[16px] cursor-pointer overflow-hidden flex-1"
-            style={{
-              height: "107px",
-              border: "1.5px solid #E5E5E5",
-              transition: "border-color 0.8s ease, box-shadow 0.8s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.border = "1.5px solid #FF5656";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.border = "1.5px solid #E5E5E5";
-            }}
-          >
-            <img
-              src={brand.img}
-              alt={`Brand logo ${index + 1}`}
-              className="object-contain group-hover:scale-110"
+      {/* Brand Cards
+          mobile  : 1 column, tall cards (130px) stacked vertically
+          desktop : 5 columns, original height (107px) side by side        */}
+      <div className="container py-8 md:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-3 md:gap-4">
+          {brands.map((brand, index) => (
+            <div
+              key={brand.id}
+              className="group flex items-center justify-center bg-white rounded-[16px] cursor-pointer overflow-hidden h-[107px]"
               style={{
-                maxWidth: "140px",
-                maxHeight: "70px",
-                transition: "transform 0.8s ease",
+                border: "1.5px solid #E5E5E5",
+                transition: "border-color 0.8s ease",
               }}
-            />
-          </div>
-        ))}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.border = "1.5px solid #FF5656";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.border = "1.5px solid #E5E5E5";
+              }}
+            >
+              <img
+                src={brand.img}
+                alt={`Brand logo ${index + 1}`}
+                className="object-contain transition-transform duration-700 ease-out group-hover:scale-110"
+                style={{
+                  maxWidth: "180px",
+                  maxHeight: "70px",
+                  width: "55%",
+                }}
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
     </section>
