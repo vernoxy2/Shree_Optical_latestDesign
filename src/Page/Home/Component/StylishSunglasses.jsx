@@ -31,7 +31,6 @@ const StylishSunglasses = () => {
   const prev = () => setCurrent((c) => (c - 1 + sunglassesData.length) % sunglassesData.length);
   const next = () => setCurrent((c) => (c + 1) % sunglassesData.length);
 
-  // Auto-slide every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((c) => (c + 1) % sunglassesData.length);
@@ -50,65 +49,39 @@ const StylishSunglasses = () => {
           <span className="text-primary font-bold">Stylish</span> <span className="font-light">Sunglasses</span>
         </h2>
 
-        {/* Slider Container */}
-        <div className="relative max-w-6xl mx-auto">
-          
-          {/* Main Content Area - Reversed order on mobile (flex-col-reverse) to keep person on top */}
-          <div className="flex flex-col-reverse lg:flex-row items-stretch gap-6 md:gap-8">
-            
-            {/* Left Panel — Info Box */}
-            <div className="w-full lg:w-1/2 bg-white rounded-2xl flex flex-col items-center lg:items-end justify-center p-8 md:p-12 lg:p-16 gap-8 md:gap-12 shadow-sm relative overflow-hidden">
-              {/* Decorative background element */}
-              <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
-              
-              {/* Glasses Type */}
-              <h3 className="text-primary font-black font-nunito text-4xl md:text-5xl lg:text-7xl text-center lg:text-right">
-                {item.type}
-              </h3>
+        {/* ── MOBILE layout (< lg) ── */}
+        <div className="block lg:hidden">
 
-              {/* Glasses Image */}
-              <div className="w-full flex items-center justify-center lg:justify-end py-4 transform hover:scale-105 transition-transform duration-500">
-                <img
-                  src={item.glassesImg}
-                  alt={item.type}
-                  className="max-h-[120px] md:max-h-[150px] lg:max-h-[180px] w-auto object-contain drop-shadow-2xl"
-                />
+          {/* Outer wrapper — px-10 makes image narrower, arrows sit outside in that space */}
+          <div className="relative flex items-center justify-center px-10">
+
+            {/* Left arrow — outside the image on the left */}
+            <button
+              onClick={prev}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-secondary/80 hover:bg-primary flex items-center justify-center shadow-xl transition-all duration-300 group"
+            >
+              <div className="relative w-5 h-5 flex items-center justify-center overflow-hidden">
+                <img src={LeftArrow} alt="Prev" className="absolute w-4 h-4 transition-all duration-500 group-hover:-translate-x-8 group-hover:opacity-0" />
+                <img src={LeftArrow} alt="Prev" className="absolute w-4 h-4 transition-all duration-500 translate-x-8 opacity-0 group-hover:translate-x-0 group-hover:opacity-100" />
               </div>
+            </button>
 
-              {/* Buy Now Button */}
-              <button className="flex items-center gap-3 bg-secondary text-white font-instrument text-lg px-8 py-4 rounded-sm hover:bg-primary transition-all duration-300 group shadow-lg">
-                <span className="font-medium">Buy Now</span>
-                <span className="relative w-6 h-6 overflow-hidden flex items-center justify-center">
-                  <img
-                    src={BlackArrow}
-                    alt="arrow"
-                    className="absolute transition-all duration-500 ease-in-out group-hover:-translate-y-6 group-hover:translate-x-6 group-hover:opacity-0 w-6 h-6"
-                  />
-                  <img
-                    src={BlackArrow}
-                    alt="arrow"
-                    className="absolute transition-all duration-500 ease-in-out translate-y-6 -translate-x-6 opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100 w-6 h-6"
-                  />
-                </span>
-              </button>
-            </div>
-
-            {/* Right Panel — Person Image */}
-            <div className="relative w-full lg:w-1/2 h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-2xl shadow-xl">
+            {/* Person image — narrower, centered */}
+            <div className="relative w-full h-[320px] sm:h-[400px] overflow-hidden rounded-2xl shadow-xl">
               {sunglassesData.map((slide, index) => (
                 <img
                   key={slide.id}
                   src={slide.personImg}
                   alt="Person"
                   className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-[1000ms] ease-in-out ${
-                    index === current ? "opacity-100 scale-105 animate-zoom" : "opacity-0"
+                    index === current ? "opacity-100" : "opacity-0"
                   }`}
                 />
               ))}
-              {/* Bottom gradient */}
-              <div className="absolute bottom-0 left-0 right-0 h-32 z-[1]" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%)" }}>
-                {/* Dot Navigation */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2.5 z-[2]">
+
+              {/* Bottom gradient + dots */}
+              <div className="absolute bottom-0 left-0 right-0 h-24 z-[1]" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%)" }}>
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2.5 z-[2]">
                   {sunglassesData.map((_, i) => (
                     <button
                       key={i}
@@ -122,34 +95,128 @@ const StylishSunglasses = () => {
               </div>
             </div>
 
-          </div>
-
-          {/* Navigation Arrows */}
-          <div className="absolute top-[180px] md:top-[230px] lg:top-1/2 left-0 right-0 lg:-left-20 lg:-right-20 flex justify-between items-center px-2 md:px-4 lg:px-0 pointer-events-none z-30 lg:-translate-y-1/2">
-            {/* Left Arrow */}
+            {/* Right arrow — outside the image on the right */}
             <button
-              onClick={prev}
-              className="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full bg-secondary/80 hover:bg-primary text-white flex items-center justify-center shadow-2xl transition-all duration-300 group pointer-events-auto"
+              onClick={next}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-secondary/80 hover:bg-primary flex items-center justify-center shadow-xl transition-all duration-300 group"
             >
-              <div className="relative w-6 h-6 md:w-8 md:h-8 flex items-center justify-center overflow-hidden">
-                <img src={LeftArrow} alt="Prev" className="absolute w-5 h-5 md:w-6 md:h-6 transition-all duration-500 group-hover:-translate-x-10 group-hover:opacity-0" />
-                <img src={LeftArrow} alt="Prev" className="absolute w-5 h-5 md:w-6 md:h-6 transition-all duration-500 translate-x-10 opacity-0 group-hover:translate-x-0 group-hover:opacity-100" />
+              <div className="relative w-5 h-5 flex items-center justify-center overflow-hidden">
+                <img src={RightArrow} alt="Next" className="absolute w-4 h-4 transition-all duration-500 group-hover:translate-x-8 group-hover:opacity-0" />
+                <img src={RightArrow} alt="Next" className="absolute w-4 h-4 transition-all duration-500 -translate-x-8 opacity-0 group-hover:translate-x-0 group-hover:opacity-100" />
               </div>
             </button>
 
-            {/* Right Arrow */}
-            <button
-              onClick={next}
-              className="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full bg-secondary/80 hover:bg-primary text-white flex items-center justify-center shadow-2xl transition-all duration-300 group pointer-events-auto"
-            >
-              <div className="relative w-6 h-6 md:w-8 md:h-8 flex items-center justify-center overflow-hidden">
-                <img src={RightArrow} alt="Next" className="absolute w-5 h-5 md:w-6 md:h-6 transition-all duration-500 group-hover:translate-x-10 group-hover:opacity-0" />
-                <img src={RightArrow} alt="Next" className="absolute w-5 h-5 md:w-6 md:h-6 transition-all duration-500 -translate-x-10 opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100" />
-              </div>
+          </div>
+
+          {/* Info box below image */}
+          <div className="bg-white rounded-2xl flex flex-col items-center justify-center p-8 gap-6 mt-4 shadow-sm relative overflow-hidden">
+            <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
+
+            {/* Glasses Type */}
+            <h3 className="text-primary font-black font-nunito text-4xl sm:text-5xl text-center">
+              {item.type}
+            </h3>
+
+            {/* Glasses Image */}
+            <div className="w-full flex items-center justify-center py-2 hover:scale-105 transition-transform duration-500">
+              <img
+                src={item.glassesImg}
+                alt={item.type}
+                className="max-h-[110px] w-auto object-contain drop-shadow-2xl"
+              />
+            </div>
+
+            {/* Buy Now Button */}
+            <button className="flex items-center gap-3 bg-secondary text-white font-instrument text-lg px-8 py-4 rounded-sm hover:bg-primary transition-all duration-300 group shadow-lg">
+              <span className="font-medium">Buy Now</span>
+              <span className="relative w-6 h-6 overflow-hidden flex items-center justify-center">
+                <img src={BlackArrow} alt="arrow" className="absolute transition-all duration-500 ease-in-out group-hover:-translate-y-6 group-hover:translate-x-6 group-hover:opacity-0 w-6 h-6" />
+                <img src={BlackArrow} alt="arrow" className="absolute transition-all duration-500 ease-in-out translate-y-6 -translate-x-6 opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100 w-6 h-6" />
+              </span>
             </button>
           </div>
 
         </div>
+
+        {/* ── DESKTOP layout (≥ lg) — completely unchanged ── */}
+        <div className="hidden lg:block">
+          <div className="relative max-w-6xl mx-auto">
+
+            <div className="flex flex-row items-stretch gap-8">
+
+              {/* Left Panel — Info Box */}
+              <div className="w-1/2 bg-white rounded-2xl flex flex-col items-end justify-center p-16 gap-12 shadow-sm relative overflow-hidden">
+                <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
+
+                <h3 className="text-primary font-black font-nunito text-7xl text-right">
+                  {item.type}
+                </h3>
+
+                <div className="w-full flex items-center justify-end py-4 hover:scale-105 transition-transform duration-500">
+                  <img
+                    src={item.glassesImg}
+                    alt={item.type}
+                    className="max-h-[180px] w-auto object-contain drop-shadow-2xl"
+                  />
+                </div>
+
+                <button className="flex items-center gap-3 bg-secondary text-white font-instrument text-lg px-8 py-4 rounded-sm hover:bg-primary transition-all duration-300 group shadow-lg">
+                  <span className="font-medium">Buy Now</span>
+                  <span className="relative w-6 h-6 overflow-hidden flex items-center justify-center">
+                    <img src={BlackArrow} alt="arrow" className="absolute transition-all duration-500 ease-in-out group-hover:-translate-y-6 group-hover:translate-x-6 group-hover:opacity-0 w-6 h-6" />
+                    <img src={BlackArrow} alt="arrow" className="absolute transition-all duration-500 ease-in-out translate-y-6 -translate-x-6 opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100 w-6 h-6" />
+                  </span>
+                </button>
+              </div>
+
+              {/* Right Panel — Person Image */}
+              <div className="relative w-1/2 h-[600px] overflow-hidden rounded-2xl shadow-xl">
+                {sunglassesData.map((slide, index) => (
+                  <img
+                    key={slide.id}
+                    src={slide.personImg}
+                    alt="Person"
+                    className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-[1000ms] ease-in-out ${
+                      index === current ? "opacity-100 scale-105 animate-zoom" : "opacity-0"
+                    }`}
+                  />
+                ))}
+                <div className="absolute bottom-0 left-0 right-0 h-32 z-[1]" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%)" }}>
+                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2.5 z-[2]">
+                    {sunglassesData.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setCurrent(i)}
+                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                          i === current ? "bg-primary w-8" : "bg-white/50 hover:bg-white"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Navigation Arrows */}
+            <div className="absolute top-1/2 -left-20 -right-20 flex justify-between items-center pointer-events-none z-30 -translate-y-1/2">
+              <button onClick={prev} className="w-16 h-16 rounded-full bg-secondary/80 hover:bg-primary text-white flex items-center justify-center shadow-2xl transition-all duration-300 group pointer-events-auto">
+                <div className="relative w-8 h-8 flex items-center justify-center overflow-hidden">
+                  <img src={LeftArrow} alt="Prev" className="absolute w-6 h-6 transition-all duration-500 group-hover:-translate-x-10 group-hover:opacity-0" />
+                  <img src={LeftArrow} alt="Prev" className="absolute w-6 h-6 transition-all duration-500 translate-x-10 opacity-0 group-hover:translate-x-0 group-hover:opacity-100" />
+                </div>
+              </button>
+              <button onClick={next} className="w-16 h-16 rounded-full bg-secondary/80 hover:bg-primary text-white flex items-center justify-center shadow-2xl transition-all duration-300 group pointer-events-auto">
+                <div className="relative w-8 h-8 flex items-center justify-center overflow-hidden">
+                  <img src={RightArrow} alt="Next" className="absolute w-6 h-6 transition-all duration-500 group-hover:translate-x-10 group-hover:opacity-0" />
+                  <img src={RightArrow} alt="Next" className="absolute w-6 h-6 transition-all duration-500 -translate-x-10 opacity-0 group-hover:translate-x-0 group-hover:opacity-100" />
+                </div>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
   );

@@ -66,14 +66,14 @@ const StarRating = ({ rating }) => {
   const full = Math.floor(rating);
   const half = rating % 1 !== 0;
   return (
-    <div style={{ display: "flex", width: "170px", height: "34px", gap: "4px", alignItems: "center" }}>
+    <div className="flex items-center gap-1">
       {[...Array(full)].map((_, i) => (
-        <svg key={i} width="34" height="34" viewBox="0 0 29 27" fill="#E9C63C" xmlns="http://www.w3.org/2000/svg">
+        <svg key={i} width="20" height="20" viewBox="0 0 29 27" fill="#E9C63C" xmlns="http://www.w3.org/2000/svg">
           <path d={starPath} />
         </svg>
       ))}
       {half && (
-        <svg width="34" height="34" viewBox="0 0 29 27" xmlns="http://www.w3.org/2000/svg">
+        <svg width="20" height="20" viewBox="0 0 29 27" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="halfStarGradient">
               <stop offset="50%" stopColor="#E9C63C" />
@@ -84,7 +84,7 @@ const StarRating = ({ rating }) => {
         </svg>
       )}
       {[...Array(5 - Math.ceil(rating))].map((_, i) => (
-        <svg key={i} width="34" height="34" viewBox="0 0 29 27" fill="#E0E0E0" xmlns="http://www.w3.org/2000/svg">
+        <svg key={i} width="20" height="20" viewBox="0 0 29 27" fill="#E0E0E0" xmlns="http://www.w3.org/2000/svg">
           <path d={starPath} />
         </svg>
       ))}
@@ -92,304 +92,283 @@ const StarRating = ({ rating }) => {
   );
 };
 
-const OurhappyClients = () => {
-  const [activeIndex, setActiveIndex] = useState(1);
-  const [scrollProgress, setScrollProgress] = useState(0);
+/* Mobile horizontal scroll carousel — images stay inside the box */
+const MobileCarousel = ({ activeIndex, setActiveIndex }) => {
   const scrollRef = useRef(null);
+
+  const handleClick = (idx) => {
+    setActiveIndex(idx);
+    // Scroll clicked image into view smoothly
+    const container = scrollRef.current;
+    if (!container) return;
+    const card = container.children[idx];
+    if (!card) return;
+    const cardLeft = card.offsetLeft;
+    const cardWidth = card.offsetWidth;
+    const containerWidth = container.offsetWidth;
+    container.scrollTo({ left: cardLeft - containerWidth / 2 + cardWidth / 2, behavior: "smooth" });
+  };
+
+  return (
+    <div
+      style={{
+        backgroundColor: "white",
+        borderRadius: "20px",
+        padding: "12px",
+        boxShadow: "0 4px 16px rgba(0,0,0,0.07)",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        ref={scrollRef}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          gap: "10px",
+          overflowX: "auto",
+          overflowY: "hidden",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          paddingBottom: "2px",
+        }}
+      >
+        {testimonials.map((t, idx) => (
+          <div
+            key={t.id}
+            onClick={() => handleClick(idx)}
+            style={{
+              flexShrink: 0,
+              width: idx === activeIndex ? "120px" : "90px",
+              height: "160px",
+              borderRadius: "14px",
+              overflow: "hidden",
+              border: idx === activeIndex ? "3px solid #FF5656" : "2px solid transparent",
+              boxShadow: idx === activeIndex ? "0 6px 18px rgba(255,86,86,0.22)" : "none",
+              opacity: idx === activeIndex ? 1 : 0.6,
+              cursor: "pointer",
+              transition: "all 0.35s ease",
+            }}
+          >
+            <img
+              src={t.img}
+              alt={t.name}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+/* Dot indicator */
+const DotIndicator = ({ total, active, onDotClick }) => (
+  <div className="flex items-center justify-center gap-2 mt-4">
+    {[...Array(total)].map((_, i) => (
+      <button
+        key={i}
+        onClick={() => onDotClick(i)}
+        style={{
+          width: i === active ? "24px" : "8px",
+          height: "8px",
+          borderRadius: "9999px",
+          backgroundColor: i === active ? "#FF5656" : "#D9D9D9",
+          border: "none",
+          padding: 0,
+          cursor: "pointer",
+          transition: "all 0.3s ease",
+        }}
+      />
+    ))}
+  </div>
+);
+
+/* Desktop vertical image stack */
+const DesktopImageStack = ({ activeIndex, setActiveIndex }) => {
+  const scrollRef = useRef(null);
+  const [localProgress, setLocalProgress] = useState(0);
 
   const handleScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
     const { scrollTop, scrollHeight, clientHeight } = el;
-    const progress = scrollTop / (scrollHeight - clientHeight);
-    setScrollProgress(progress);
+    setLocalProgress(scrollTop / (scrollHeight - clientHeight));
   };
 
-  const getStyle = (index) => {
+  const getCardStyle = (index) => {
     const diff = index - activeIndex;
-    if (diff === 0) {
-      return {
-        height: "210px",
-        opacity: 1,
-        border: "2.5px solid #FF5656",
-        boxShadow: "0 8px 30px rgba(255,86,86,0.15)",
-        transition: "all 0.4s ease",
-      };
-    } else if (Math.abs(diff) === 1) {
-      return {
-        height: "155px",
-        opacity: 1,
-        border: "2px solid transparent",
-        boxShadow: "none",
-        transition: "all 0.4s ease",
-      };
-    } else {
-      return {
-        height: "120px",
-        opacity: 0.45,
-        border: "2px solid transparent",
-        boxShadow: "none",
-        transition: "all 0.4s ease",
-      };
-    }
+    if (diff === 0) return { height: "180px", opacity: 1, border: "2.5px solid #FF5656", boxShadow: "0 8px 30px rgba(255,86,86,0.15)", transition: "all 0.4s ease" };
+    if (Math.abs(diff) === 1) return { height: "130px", opacity: 1, border: "2px solid transparent", boxShadow: "none", transition: "all 0.4s ease" };
+    return { height: "100px", opacity: 0.45, border: "2px solid transparent", boxShadow: "none", transition: "all 0.4s ease" };
   };
 
-  const trackHeight = 472;
+  const trackHeight = 420;
   const thumbHeight = trackHeight / testimonials.length;
-  const thumbTop = scrollProgress * (trackHeight - thumbHeight);
+  const thumbTop = localProgress * (trackHeight - thumbHeight);
 
   return (
-    <section
-      className="bg-Bg py-16 px-4 md:px-8"
-      style={{ borderRadius: "32px" }}
+    <div
+      className="relative flex-shrink-0"
+      style={{
+        width: "317px",
+        height: "490px",
+        backgroundColor: "white",
+        borderRadius: "32px",
+        padding: "16px 16px 16px 24px",
+        boxSizing: "border-box",
+        boxShadow: "0 8px 30px rgba(0,0,0,0.06)",
+        overflow: "hidden",
+      }}
     >
+      <div className="absolute" style={{ left: "10px", top: "40px", width: "3px", height: `${trackHeight}px`, backgroundColor: "#E5E7EB", borderRadius: "9999px" }} />
+      <div className="absolute" style={{ left: "10px", top: `${40 + thumbTop}px`, width: "3px", height: `${thumbHeight}px`, backgroundColor: "#FF5656", borderRadius: "9999px", transition: "top 0.2s ease" }} />
+      <div
+        ref={scrollRef}
+        onScroll={handleScroll}
+        style={{ marginLeft: "16px", height: "100%", display: "flex", flexDirection: "column", gap: "10px", overflowY: "auto", scrollbarWidth: "none", msOverflowStyle: "none", paddingRight: "4px" }}
+      >
+        {testimonials.map((t, index) => (
+          <div
+            key={t.id}
+            onClick={() => setActiveIndex(index)}
+            className="relative cursor-pointer flex-shrink-0"
+            style={{ width: "100%", borderRadius: "20px", overflow: "hidden", ...getCardStyle(index) }}
+          >
+            <img src={t.img} alt={t.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            {index === activeIndex && (
+              <div className="absolute flex items-center justify-center" style={{ top: "12px", right: "12px", width: "32px", height: "32px", borderRadius: "50%", backgroundColor: "#F97316" }}>
+                <svg width="16" height="16" viewBox="0 0 29 27" fill="white" xmlns="http://www.w3.org/2000/svg">
+                  <path d={starPath} />
+                </svg>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+/* Main component */
+const OurhappyClients = () => {
+  const [activeIndex, setActiveIndex] = useState(1);
+  const active = testimonials[activeIndex];
+
+  return (
+    <section className="bg-Bg py-10 md:py-16 px-4 md:px-8" style={{ borderRadius: "32px" }}>
       <div className="container mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <h2
-            className="font-bold mb-4"
-            style={{
-              fontFamily: "'Nunito Sans', sans-serif",
-              fontSize: "48px",
-              lineHeight: "72.1px",
-              letterSpacing: "0",
-              margin: "0 0 16px 0",
-            }}
+            className="font-bold mb-3 text-3xl sm:text-4xl md:text-5xl"
+            style={{ fontFamily: "'Nunito Sans', sans-serif", lineHeight: "1.3" }}
           >
             <span className="text-primary">Our Happy</span>{" "}
             <span className="text-secondary">Clients</span>
           </h2>
           <p
-            className="text-gray-600 max-w-2xl mx-auto"
-            style={{
-              fontFamily: "'Instrument Sans', sans-serif",
-              fontWeight: 400,
-              fontSize: "20px",
-              lineHeight: "26px",
-              letterSpacing: "0",
-            }}
+            className="text-gray-600 max-w-2xl mx-auto text-sm md:text-lg"
+            style={{ fontFamily: "'Instrument Sans', sans-serif", fontWeight: 400, lineHeight: "1.6" }}
           >
             Quality eyewear for every style and need. We offer trendy frames, sunglasses, and lenses
             with expert eye care, personalized service, and comfort to help you see clearly.
           </p>
         </div>
 
-        {/* Content */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+        {/* MOBILE layout */}
+        <div className="block md:hidden">
+          <MobileCarousel activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
+          <DotIndicator total={testimonials.length} active={activeIndex} onDotClick={setActiveIndex} />
 
-          {/* Left: Scrollable Client Images Stack */}
           <div
-            className="relative flex-shrink-0"
-            style={{
-              width: "317px",
-              height: "552px",
-              backgroundColor: "white",
-              borderRadius: "32px",
-              padding: "16px 16px 16px 24px",
-              boxSizing: "border-box",
-              boxShadow: "0 8px 30px rgba(0,0,0,0.06)",
-              overflow: "hidden",
-            }}
+            className="relative bg-white overflow-hidden mt-6"
+            style={{ borderRadius: "24px", padding: "28px 20px 24px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}
           >
-            {/* Scroll Track */}
-            <div
-              className="absolute"
-              style={{
-                left: "10px",
-                top: "40px",
-                width: "3px",
-                height: `${trackHeight}px`,
-                backgroundColor: "#E5E7EB",
-                borderRadius: "9999px",
-              }}
-            />
-
-            {/* Scroll Thumb */}
-            <div
-              className="absolute"
-              style={{
-                left: "10px",
-                top: `${40 + thumbTop}px`,
-                width: "3px",
-                height: `${thumbHeight}px`,
-                backgroundColor: "#FF5656",
-                borderRadius: "9999px",
-                transition: "top 0.2s ease",
-              }}
-            />
-
-            {/* Scrollable images */}
-            <div
-              ref={scrollRef}
-              onScroll={handleScroll}
-              style={{
-                marginLeft: "16px",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                gap: "12px",
-                overflowY: "auto",
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
-                paddingRight: "4px",
-              }}
-            >
-              {testimonials.map((t, index) => (
-                <div
-                  key={t.id}
-                  onClick={() => setActiveIndex(index)}
-                  className="relative cursor-pointer flex-shrink-0"
-                  style={{
-                    width: "100%",
-                    borderRadius: "20px",
-                    overflow: "hidden",
-                    ...getStyle(index),
-                  }}
-                >
-                  <img
-                    src={t.img}
-                    alt={t.name}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  />
-                  {index === activeIndex && (
-                    <div
-                      className="absolute flex items-center justify-center"
-                      style={{
-                        top: "14px",
-                        right: "14px",
-                        width: "36px",
-                        height: "36px",
-                        borderRadius: "50%",
-                        backgroundColor: "#F97316",
-                      }}
-                    >
-                      <svg width="18" height="18" viewBox="0 0 29 27" fill="white" xmlns="http://www.w3.org/2000/svg">
-                        <path d={starPath} />
-                      </svg>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: Testimonial Card */}
-          <div
-            className="relative bg-white overflow-hidden flex-shrink-0"
-            style={{
-              width: "710px",
-              height: "552px",
-              borderRadius: "48px",
-              padding: "56px",
-              boxSizing: "border-box",
-              boxShadow: "0 10px 40px rgba(0,0,0,0.03)",
-            }}
-          >
-            {/* Background Quote Mark */}
+            {/* Background quote */}
             <div
               className="absolute select-none pointer-events-none"
-              style={{
-                top: "-40px",
-                right: "16px",
-                fontSize: "240px",
-                fontWeight: "bold",
-                color: "#F3F4F6",
-                opacity: 0.3,
-                lineHeight: 1,
-              }}
+              style={{ top: "-16px", right: "10px", fontSize: "110px", fontWeight: "bold", color: "#F3F4F6", opacity: 0.6, lineHeight: 1 }}
             >
               "
             </div>
 
-            <div className="relative z-10 h-full flex flex-col justify-between">
-              <div>
-                <p
-                  style={{
-                    fontFamily: "'Instrument Sans', sans-serif",
-                    fontWeight: 400,
-                    fontSize: "20px",
-                    lineHeight: "26px",
-                    letterSpacing: "0",
-                    color: "#4A4A4A",
-                    margin: "0 0 36px 0",
-                    transition: "all 0.4s ease",
-                  }}
-                >
-                  {testimonials[activeIndex].text1}
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'Instrument Sans', sans-serif",
-                    fontWeight: 400,
-                    fontSize: "20px",
-                    lineHeight: "26px",
-                    letterSpacing: "0",
-                    color: "#4A4A4A",
-                    margin: 0,
-                    transition: "all 0.4s ease",
-                  }}
-                >
-                  {testimonials[activeIndex].text2}
-                </p>
-              </div>
+            <div className="relative z-10">
+              <p className="text-gray-600 text-sm leading-relaxed mb-3" style={{ fontFamily: "'Instrument Sans', sans-serif", transition: "all 0.4s ease" }}>
+                {active.text1}
+              </p>
+              <p className="text-gray-600 text-sm leading-relaxed" style={{ fontFamily: "'Instrument Sans', sans-serif", transition: "all 0.4s ease" }}>
+                {active.text2}
+              </p>
 
-              {/* Bottom: Name + Stars + Dotted line below */}
-              <div>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "space-between",
-                    paddingBottom: "8px",
-                  }}
-                >
-                  <div style={{ height: "72px" }}>
-                    <h4
-                      style={{
-                        fontFamily: "'Nunito Sans', sans-serif",
-                        fontSize: "24px",
-                        fontWeight: "bold",
-                        lineHeight: "1.2",
-                        letterSpacing: "0",
-                        color: "#FF5656",
-                        margin: "0 0 2px 0",
-                        transition: "all 0.4s ease",
-                      }}
-                    >
-                      {testimonials[activeIndex].name}
+              <div className="mt-5">
+                <div className="flex items-end justify-between gap-2">
+                  <div>
+                    <h4 className="text-primary font-bold text-lg mb-0.5" style={{ fontFamily: "'Nunito Sans', sans-serif", transition: "all 0.4s ease" }}>
+                      {active.name}
                     </h4>
-                    <p
-                      style={{
-                        fontFamily: "'Instrument Sans', sans-serif",
-                        fontWeight: 400,
-                        fontSize: "20px",
-                        lineHeight: "27px",
-                        letterSpacing: "0",
-                        color: "#6B7280",
-                        margin: 0,
-                      }}
-                    >
-                      {testimonials[activeIndex].role}
+                    <p className="text-gray-400 text-sm" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>
+                      {active.role}
                     </p>
                   </div>
-
-                  <StarRating rating={testimonials[activeIndex].rating} />
+                  <StarRating rating={active.rating} />
                 </div>
-
-                {/* Dotted line only */}
-                <div
-                  style={{
-                    width: "250px",
-                    borderBottom: "2px dashed #D9D9D9",
-                  }}
-                />
-
+                <div className="mt-3" style={{ borderBottom: "2px dashed #E5E7EB", width: "65%" }} />
               </div>
             </div>
           </div>
-
         </div>
+
+        {/* DESKTOP layout */}
+        <div className="hidden md:flex items-center justify-center gap-10 lg:gap-16">
+          <DesktopImageStack activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
+
+          <div
+            className="relative bg-white overflow-hidden w-full flex-shrink-0"
+            style={{
+              maxWidth: "710px",
+              minHeight: "420px",
+              borderRadius: "32px",
+              padding: "clamp(28px, 5vw, 56px)",
+              boxSizing: "border-box",
+              boxShadow: "0 10px 40px rgba(0,0,0,0.03)",
+            }}
+          >
+            <div
+              className="absolute select-none pointer-events-none"
+              style={{ top: "-40px", right: "16px", fontSize: "clamp(120px, 20vw, 240px)", fontWeight: "bold", color: "#F3F4F6", opacity: 0.3, lineHeight: 1 }}
+            >
+              "
+            </div>
+
+            <div className="relative z-10 h-full flex flex-col justify-between gap-6">
+              <div>
+                <p className="text-[#4A4A4A] text-base lg:text-lg leading-relaxed mb-6" style={{ fontFamily: "'Instrument Sans', sans-serif", transition: "all 0.4s ease" }}>
+                  {active.text1}
+                </p>
+                <p className="text-[#4A4A4A] text-base lg:text-lg leading-relaxed" style={{ fontFamily: "'Instrument Sans', sans-serif", transition: "all 0.4s ease" }}>
+                  {active.text2}
+                </p>
+              </div>
+
+              <div>
+                <div className="flex items-start justify-between pb-2 gap-4 flex-wrap">
+                  <div>
+                    <h4 className="text-primary font-bold text-xl md:text-2xl mb-1" style={{ fontFamily: "'Nunito Sans', sans-serif", transition: "all 0.4s ease" }}>
+                      {active.name}
+                    </h4>
+                    <p className="text-gray-500 text-base" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>
+                      {active.role}
+                    </p>
+                  </div>
+                  <StarRating rating={active.rating} />
+                </div>
+                <div style={{ width: "250px", borderBottom: "2px dashed #D9D9D9" }} />
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );

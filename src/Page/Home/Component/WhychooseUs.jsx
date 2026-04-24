@@ -59,12 +59,11 @@ const WhychooseUs = () => {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400&family=Nunito+Sans:wght@700;900&display=swap');
 
+        /* Only keep hover/transition styles here — layout & sizing moved to Tailwind */
         .why-card {
           background-color: rgba(255, 255, 255, 0.08);
           border: 1px solid rgba(255, 255, 255, 0.1);
           transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.4s ease;
-          min-height: 360px;
-          padding: 32px;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
@@ -98,7 +97,7 @@ const WhychooseUs = () => {
         .why-card .card-divider {
           width: 100%;
           height: 2px;
-          margin-bottom: 24px;
+          margin-bottom: 20px;
           position: relative;
           background-color: rgba(255, 255, 255, 0.1);
         }
@@ -121,8 +120,8 @@ const WhychooseUs = () => {
         .why-card .card-description {
           font-family: 'Instrument Sans', sans-serif;
           font-weight: 400;
-          font-size: 20px;
-          line-height: 26px;
+          font-size: 16px;
+          line-height: 1.5;
           color: #ffffff;
           margin: 0;
           transition: color 0.4s ease;
@@ -161,7 +160,7 @@ const WhychooseUs = () => {
         }
       `}</style>
 
-      <section className="relative overflow-hidden bg-[#0F0F0F] py-20">
+      <section className="relative overflow-hidden bg-[#0F0F0F] py-12 md:py-20">
         <div
           className="absolute inset-0"
           style={{
@@ -176,39 +175,24 @@ const WhychooseUs = () => {
           style={{ backgroundColor: "rgba(10, 10, 10, 0.94)" }}
         />
 
-        <div
-          className="relative z-10 container mx-auto px-4"
-          style={{ maxWidth: "1240px" }}
-        >
+        <div className="relative z-10 container mx-auto px-4 max-w-[1240px]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
             {/* Header Card */}
-            <div
-              className="p-6 flex flex-col justify-start items-start"
-              style={{ minHeight: "340px" }}
-            >
+            <div className="p-6 flex flex-col justify-start items-start min-h-[160px] md:min-h-[240px] lg:min-h-[340px]">
               <h2
-                style={{
-                  fontFamily: "'Nunito Sans', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "45px",
-                  lineHeight: "1.1",
-                  color: "white",
-                  margin: "0 0 15px 0",
-                  whiteSpace: "nowrap",
-                }}
+                className="text-3xl sm:text-4xl lg:text-[45px] font-bold text-white mb-4 leading-tight"
+                style={{ fontFamily: "'Nunito Sans', sans-serif" }}
               >
                 Why Choose Us?
               </h2>
 
               <p
+                className="text-gray-300 text-base md:text-lg mb-6"
                 style={{
                   fontFamily: "'Instrument Sans', sans-serif",
                   fontWeight: 400,
-                  fontSize: "20px",
-                  lineHeight: "26px",
-                  color: "#D1D5DB",
-                  margin: "0 0 24px 0",
+                  lineHeight: "1.6",
                 }}
               >
                 Experience the difference with our commitment to vision, style,
@@ -225,28 +209,15 @@ const WhychooseUs = () => {
               />
             </div>
 
-            {/* Feature Cards */}
+            {/* Feature Cards — padding and min-height via Tailwind responsive classes */}
             {whyChooseUsData.map((feature) => (
-              <div key={feature.id} className="why-card">
-
+              <div
+                key={feature.id}
+                className="why-card rounded-xl p-5 md:p-6 lg:p-8 min-h-[200px] md:min-h-[280px] lg:min-h-[360px]"
+              >
                 {/* Icon + Title Row */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "16px",
-                    marginBottom: "32px",
-                    width: "100%",
-                  }}
-                >
-                  <div
-                    style={{
-                      flexShrink: 0,
-                      position: "relative",
-                      width: "80px",
-                      height: "80px",
-                    }}
-                  >
+                <div className="flex items-center gap-4 mb-6 md:mb-8 w-full">
+                  <div className="relative flex-shrink-0 w-14 h-14 md:w-[80px] md:h-[80px]">
                     <img
                       src={feature.whiteIcon}
                       alt={feature.title}

@@ -7,20 +7,16 @@ import EmailIcon from "../../../Assets/InquirySection/Frame 99.svg";
 
 const Inquiry = () => {
   return (
-    <section className="py-20" style={{ backgroundColor: "#FFF5F0" }}>
+    <section className="py-12 md:py-20" style={{ backgroundColor: "#FFF5F0" }}>
       <div className="container mx-auto px-4 md:px-8 lg:px-16">
-        <div className="flex flex-col lg:flex-row gap-12 items-start">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-start">
 
           {/* Left Side — Form */}
           <div className="w-full lg:w-2/3">
+            {/* Responsive heading — replaced inline fontSize: "48px" */}
             <h2
-              style={{
-                fontFamily: "'Nunito Sans', sans-serif",
-                fontSize: "48px",
-                lineHeight: "72.1px",
-                letterSpacing: "0%",
-                margin: "0 0 48px 0",
-              }}
+              className="text-3xl sm:text-4xl md:text-5xl mb-8 md:mb-12 leading-tight"
+              style={{ fontFamily: "'Nunito Sans', sans-serif" }}
             >
               <span style={{ fontWeight: 700, color: "var(--color-primary)" }}>
                 Get Your Free
@@ -89,12 +85,11 @@ const Inquiry = () => {
             </form>
           </div>
 
-          {/* Right Side — Contact Card */}
-          <div className="w-full lg:w-1/3">
-            <div
-              className="relative rounded-2xl overflow-hidden shadow-2xl"
-              style={{ height: "499px" }}
-            >
+          {/* Right Side — Contact Card
+              Was: w-full lg:w-1/3 with fixed height 499px
+              Now: full width on mobile, auto height so content never clips */}
+          <div className="w-full md:w-2/3 md:mx-auto lg:mx-0 lg:w-1/3">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl min-h-[420px] md:min-h-[499px]">
               {/* Background Image */}
               <img
                 src={CardBg}
@@ -106,37 +101,28 @@ const Inquiry = () => {
               <div className="absolute inset-0 bg-black/70 z-10" />
 
               {/* Card Content */}
-              <div className="relative z-20 p-8 md:p-10 text-white h-full flex flex-col justify-between">
+              <div className="relative z-20 p-7 md:p-10 text-white flex flex-col justify-between gap-8 min-h-[420px] md:min-h-[499px]">
 
                 {/* Top — Title + Divider */}
                 <div>
                   <h3
-                    style={{
-                      fontFamily: "'Nunito Sans', sans-serif",
-                      fontWeight: 700,
-                      fontSize: "48px",
-                      lineHeight: "34px",
-                      margin: "0 0 14px 0",
-                      whiteSpace: "nowrap",
-                    }}
+                    className="text-3xl md:text-4xl font-bold mb-3"
+                    style={{ fontFamily: "'Nunito Sans', sans-serif", lineHeight: "1.2" }}
                   >
                     Contact Us
                   </h3>
-                  <div className="w-32 h-px bg-white/30 mt-4" />
+                  <div className="w-32 h-px bg-white/30 mt-2" />
                 </div>
 
                 {/* Location */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shrink-0">
                     <img src={LocationIcon} alt="Location" className="w-full h-full" />
                   </div>
                   <p
+                    className="text-base md:text-lg leading-relaxed"
                     style={{
                       fontFamily: "'Instrument Sans', sans-serif",
-                      fontWeight: 400,
-                      fontSize: "20px",
-                      lineHeight: "130%",
-                      letterSpacing: "0%",
                       color: "rgba(255,255,255,0.9)",
                       margin: 0,
                     }}
@@ -149,16 +135,13 @@ const Inquiry = () => {
 
                 {/* Phone */}
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shrink-0">
                     <img src={PhoneIcon} alt="Phone" className="w-full h-full" />
                   </div>
                   <p
+                    className="text-base md:text-lg"
                     style={{
                       fontFamily: "'Instrument Sans', sans-serif",
-                      fontWeight: 400,
-                      fontSize: "20px",
-                      lineHeight: "130%",
-                      letterSpacing: "0%",
                       color: "#ffffff",
                       margin: 0,
                     }}
@@ -169,27 +152,22 @@ const Inquiry = () => {
 
                 {/* Email */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shrink-0">
                     <img src={EmailIcon} alt="Email" className="w-full h-full" />
                   </div>
-                  <div>
-                    <p
-                      style={{
-                        fontFamily: "'Instrument Sans', sans-serif",
-                        fontWeight: 400,
-                        fontSize: "20px",
-                        lineHeight: "130%",
-                        letterSpacing: "0%",
-                        color: "#ffffff",
-                        margin: 0,
-                      }}
-                    >
-                      Email :<br />
-                      <span style={{ color: "rgba(255,255,255,0.85)" }}>
-                        sshreeoptical@gmail.com
-                      </span>
-                    </p>
-                  </div>
+                  <p
+                    className="text-base md:text-lg leading-relaxed"
+                    style={{
+                      fontFamily: "'Instrument Sans', sans-serif",
+                      color: "#ffffff",
+                      margin: 0,
+                    }}
+                  >
+                    Email :<br />
+                    <span style={{ color: "rgba(255,255,255,0.85)" }}>
+                      sshreeoptical@gmail.com
+                    </span>
+                  </p>
                 </div>
 
               </div>
