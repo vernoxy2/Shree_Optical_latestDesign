@@ -12,8 +12,6 @@ const shopItems = [
   { id: 4, name: "Sunglasses", img: SunglassesImg },
 ];
 
-
-
 const Shop = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -41,7 +39,6 @@ const Shop = () => {
         </div>
 
         {/* ── Mobile Vertical Accordion (< lg) ── */}
-        {/* Same hover/active logic as desktop but cards expand in HEIGHT instead of width */}
         <div className="flex flex-col gap-3 lg:hidden">
           {shopItems.map((item, index) => {
             const isExpanded = expandedIndex === index;
@@ -60,11 +57,11 @@ const Shop = () => {
                   src={item.img}
                   alt={item.name}
                   className="w-full h-full object-cover transition-transform duration-1000 ease-out"
-                  style={{ transform: isHovered ? "scale(1.1)" : "scale(1)" }}
+                  style={{ transform: isHovered ? "scale(1.1)" : "scale(1)", pointerEvents: "none" }}
                 />
 
                 {/* Top Right — pink circle with arrow */}
-                <div className="absolute top-3 right-3 z-20">
+                <div className="absolute top-3 right-3 z-20" style={{ pointerEvents: "none" }}>
                   <div className="relative w-[38px] h-[38px] bg-primary rounded-full overflow-hidden flex items-center justify-center">
                     <img
                       src={FrameIcon}
@@ -79,22 +76,24 @@ const Shop = () => {
                   </div>
                 </div>
 
-                {/* Pink gradient — only when NOT hovered */}
+                {/* Pink gradient */}
                 <div
                   className="absolute bottom-0 left-0 right-0 transition-opacity duration-500"
                   style={{
                     height: "60%",
                     background: "linear-gradient(to top, rgba(255,86,86,0.75) 0%, rgba(255,86,86,0.3) 50%, transparent 100%)",
                     opacity: isHovered ? 0 : 1,
+                    pointerEvents: "none",
                   }}
                 />
 
-                {/* Default Label — hidden on hover */}
+                {/* Default Label */}
                 <div
                   className="absolute inset-0 z-10 transition-all duration-500"
                   style={{
                     opacity: isHovered ? 0 : 1,
                     transform: isHovered ? "translateY(10px)" : "translateY(0)",
+                    pointerEvents: "none",
                   }}
                 >
                   {isExpanded ? (
@@ -118,7 +117,7 @@ const Shop = () => {
                   style={{
                     opacity: isHovered ? 1 : 0,
                     transform: isHovered ? "translateY(0)" : "translateY(20px)",
-                    pointerEvents: isHovered ? "auto" : "none",
+                    pointerEvents: "none",
                     height: "50%",
                   }}
                 >
@@ -147,18 +146,16 @@ const Shop = () => {
                 style={{ flex: isExpanded ? 2 : 1 }}
               >
                 {/* Image */}
-                <div
-                  className="relative w-full overflow-hidden rounded-[30px] h-[480px] xl:h-[580px] 2xl:h-[657px]"
-                >
+                <div className="relative w-full overflow-hidden rounded-[30px] h-[480px] xl:h-[580px] 2xl:h-[657px]">
                   <img
                     src={item.img}
                     alt={item.name}
                     className="w-full h-full object-cover transition-transform duration-1000 ease-out"
-                    style={{ transform: isHovered ? "scale(1.1)" : "scale(1)" }}
+                    style={{ transform: isHovered ? "scale(1.1)" : "scale(1)", pointerEvents: "none" }}
                   />
 
                   {/* Top Right — pink circle */}
-                  <div className="absolute top-6 right-6 z-20">
+                  <div className="absolute top-6 right-6 z-20" style={{ pointerEvents: "none" }}>
                     <div className="relative w-[50px] h-[50px] bg-primary rounded-full overflow-hidden flex items-center justify-center">
                       <img
                         src={FrameIcon}
@@ -173,30 +170,29 @@ const Shop = () => {
                     </div>
                   </div>
 
-                  {/* Pink gradient — only when NOT hovered */}
+                  {/* Pink gradient */}
                   <div
                     className="absolute bottom-0 left-0 right-0 transition-opacity duration-500"
                     style={{
                       height: "55%",
-                      background:
-                        "linear-gradient(to top, rgba(255,86,86,0.75) 0%, rgba(255,86,86,0.3) 50%, transparent 100%)",
+                      background: "linear-gradient(to top, rgba(255,86,86,0.75) 0%, rgba(255,86,86,0.3) 50%, transparent 100%)",
                       opacity: isHovered ? 0 : 1,
+                      pointerEvents: "none",
                     }}
                   />
 
-                  {/* Default Label — hidden on hover */}
+                  {/* Default Label */}
                   <div
                     className="absolute inset-0 z-10 transition-all duration-500"
                     style={{
                       opacity: isHovered ? 0 : 1,
                       transform: isHovered ? "translateY(10px)" : "translateY(0)",
+                      pointerEvents: "none",
                     }}
                   >
                     {isExpanded ? (
                       <div className="absolute inset-0 flex items-end justify-start pb-8 pl-6">
-                        <h3
-                          className="text-white font-bold font-nunito text-5xl xl:text-[64px] drop-shadow-[0_4px_10px_rgba(0,0,0,0.2)]"
-                        >
+                        <h3 className="text-white font-bold font-nunito text-5xl xl:text-[64px] drop-shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
                           {item.name}
                         </h3>
                       </div>
@@ -204,10 +200,7 @@ const Shop = () => {
                       <div className="absolute inset-0 flex items-end justify-center pb-8">
                         <h3
                           className="text-white font-bold font-nunito text-5xl xl:text-[64px] drop-shadow-[0_4px_10px_rgba(0,0,0,0.2)]"
-                          style={{
-                            writingMode: "vertical-rl",
-                            transform: "rotate(180deg)",
-                          }}
+                          style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
                         >
                           {item.name}
                         </h3>
@@ -221,7 +214,7 @@ const Shop = () => {
                     style={{
                       opacity: isHovered ? 1 : 0,
                       transform: isHovered ? "translateY(0)" : "translateY(20px)",
-                      pointerEvents: isHovered ? "auto" : "none",
+                      pointerEvents: "none",
                       height: "50%",
                     }}
                   >
@@ -242,9 +235,7 @@ const Shop = () => {
               key={i}
               onClick={() => setActiveIndex(i)}
               className={`rounded-full transition-all duration-300 ${
-                i === expandedIndex
-                  ? "w-8 h-3 bg-primary"
-                  : "w-3 h-3 bg-gray-300"
+                i === expandedIndex ? "w-8 h-3 bg-primary" : "w-3 h-3 bg-gray-300"
               }`}
             />
           ))}
