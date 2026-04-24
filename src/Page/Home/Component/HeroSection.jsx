@@ -19,7 +19,6 @@ const HeaderData = [
       </>
     ),
     subtitle: "Stylish tortoiseshell glasses with clear nose pads, dual-tone temples, lightweight lenses, and UV-protected, anti-glare vision",
-    textOffset: "ml-20",
   },
   {
     id: 1,
@@ -35,7 +34,6 @@ const HeaderData = [
       </>
     ),
     subtitle: "Stylish tortoiseshell glasses with clear nose pads, dual-tone temples, lightweight lenses, and UV-protected, anti-glare vision enhancement.",
-    textOffset: "ml-20",
   },
 ];
 
@@ -67,7 +65,8 @@ const HeroSection = forwardRef((props, ref) => {
 
       <div className="absolute inset-0 z-20 flex items-center">
         <div className="container mx-auto px-4 md:px-8 lg:px-16">
-          <div className="max-w-3xl md:ml-40">
+          {/* Fixed: was md:ml-40 with no xl — now properly scaled across all breakpoints */}
+          <div className="max-w-3xl md:ml-16 lg:ml-28 xl:ml-40">
             <h1 className="text-white text-3xl md:text-5xl lg:text-7xl font-bold leading-[1.1] mb-6 drop-shadow-lg">
               {HeaderData[current].title}
             </h1>
