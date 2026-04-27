@@ -55,28 +55,33 @@ const HeroSection = forwardRef((props, ref) => {
       {showPopup && <Popup onClose={() => setShowPopup(false)} />}
 
       {HeaderData.map((item, index) => (
-        <img
-          key={item.id}
-          src={item.BgImag}
-          alt="Slider Background"
-     className={`absolute inset-0 w-full h-full object-cover object-[90%_center] sm:object-[80%_center] md:object-[80%_center] lg:object-cover transition-opacity duration-1000 ${
-  index === current ? "opacity-100" : "opacity-0"
-}`}
-        />
-      ))}
+  <img
+    key={item.id}
+    src={item.BgImag}
+    alt="Slider Background"
+    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+      index === current ? "opacity-100" : "opacity-0"
+    }`}
+    style={{ 
+      objectPosition: index === 1 
+        ? "82% 10%"   // male — shifted left enough to show face on mobile too
+        : "90% center" // female
+    }}
+  />
+))}
 
       {/* Dark overlay on mobile for better text readability */}
       <div className="absolute inset-0 z-10 bg-black/30 md:bg-transparent"></div>
 
       <div className="absolute inset-0 z-20 flex items-center pt-0 md:pt-20 lg:pt-20 xl:pt-0">
         <div className="w-full md:w-full lg:container lg:mx-auto px-6 md:px-6 lg:px-16">
-         <div className="max-w-3xl ml-0 md:ml-0 lg:ml-28 xl:ml-40 scale-[0.50] sm:scale-100 origin-left">
+          <div className="max-w-xs sm:max-w-lg md:max-w-m lg:max-w-3xl md:ml-16 lg:ml-28 xl:ml-40">
 
-            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.2] mb-4 md:mb-6 drop-shadow-lg">
+            <h1 className="text-white text-2xl sm:text-5xl md:text-5xl lg:text-7xl font-bold leading-[1.2] mb-4 md:mb-6 drop-shadow-lg">
               {HeaderData[current].title}
             </h1>
 
-            <p className="text-white/90 md:text-black font-medium text-sm md:text-lg lg:text-xl leading-relaxed w-full md:w-3/4 lg:w-2/3 mb-6 md:mb-8 drop-shadow-sm">
+            <p className="text-white/90 md:text-black font-medium text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed w-[55%] sm:w-[60%] md:w-3/4 lg:w-2/3 mb-6 md:mb-8 drop-shadow-sm">
               {HeaderData[current].subtitle}
             </p>
 
