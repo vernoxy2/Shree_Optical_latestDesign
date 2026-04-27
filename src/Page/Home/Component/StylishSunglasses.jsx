@@ -50,7 +50,7 @@ const StylishSunglasses = () => {
         </h2>
 
         {/* ── MOBILE layout (< lg) ── */}
-        <div className="block lg:hidden">
+        <div className="block xl:hidden">
 
           {/* Outer wrapper — px-10 makes image narrower, arrows sit outside in that space */}
           <div className="relative flex items-center justify-center px-10">
@@ -67,13 +67,13 @@ const StylishSunglasses = () => {
             </button>
 
             {/* Person image — narrower, centered */}
-            <div className="relative w-full h-[320px] sm:h-[400px] overflow-hidden rounded-2xl shadow-xl">
+            <div className="relative w-full h-[320px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-2xl shadow-xl">
               {sunglassesData.map((slide, index) => (
                 <img
                   key={slide.id}
                   src={slide.personImg}
                   alt="Person"
-                  className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-[1000ms] ease-in-out ${
+                  className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-[1000ms] ease-in-out ${
                     index === current ? "opacity-100" : "opacity-0"
                   }`}
                 />
@@ -109,37 +109,39 @@ const StylishSunglasses = () => {
           </div>
 
           {/* Info box below image */}
-          <div className="bg-white rounded-2xl flex flex-col items-center justify-center p-8 gap-6 mt-4 shadow-sm relative overflow-hidden">
-            <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
+          <div className="px-10">
+            <div className="bg-white rounded-2xl flex flex-col items-center justify-center p-8 gap-6 mt-4 shadow-sm relative overflow-hidden h-[320px] sm:h-[400px] md:h-[500px]">
+              <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
+    
+              {/* Glasses Type */}
+              <h3 className="text-primary font-black font-nunito text-4xl sm:text-5xl text-center">
+                {item.type}
+              </h3>
 
-            {/* Glasses Type */}
-            <h3 className="text-primary font-black font-nunito text-4xl sm:text-5xl text-center">
-              {item.type}
-            </h3>
+              {/* Glasses Image */}
+              <div className="w-full flex items-center justify-center py-2 hover:scale-105 transition-transform duration-500">
+                <img
+                  src={item.glassesImg}
+                  alt={item.type}
+                  className="max-h-[110px] w-auto object-contain drop-shadow-2xl"
+                />
+              </div>
 
-            {/* Glasses Image */}
-            <div className="w-full flex items-center justify-center py-2 hover:scale-105 transition-transform duration-500">
-              <img
-                src={item.glassesImg}
-                alt={item.type}
-                className="max-h-[110px] w-auto object-contain drop-shadow-2xl"
-              />
+              {/* Buy Now Button */}
+              <button className="flex items-center gap-3 bg-secondary text-white font-instrument text-lg px-8 py-4 rounded-sm hover:bg-primary transition-all duration-300 group shadow-lg">
+                <span className="font-medium">Buy Now</span>
+                <span className="relative w-6 h-6 overflow-hidden flex items-center justify-center">
+                  <img src={BlackArrow} alt="arrow" className="absolute transition-all duration-500 ease-in-out group-hover:-translate-y-6 group-hover:translate-x-6 group-hover:opacity-0 w-6 h-6" />
+                  <img src={BlackArrow} alt="arrow" className="absolute transition-all duration-500 ease-in-out translate-y-6 -translate-x-6 opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100 w-6 h-6" />
+                </span>
+              </button>
             </div>
-
-            {/* Buy Now Button */}
-            <button className="flex items-center gap-3 bg-secondary text-white font-instrument text-lg px-8 py-4 rounded-sm hover:bg-primary transition-all duration-300 group shadow-lg">
-              <span className="font-medium">Buy Now</span>
-              <span className="relative w-6 h-6 overflow-hidden flex items-center justify-center">
-                <img src={BlackArrow} alt="arrow" className="absolute transition-all duration-500 ease-in-out group-hover:-translate-y-6 group-hover:translate-x-6 group-hover:opacity-0 w-6 h-6" />
-                <img src={BlackArrow} alt="arrow" className="absolute transition-all duration-500 ease-in-out translate-y-6 -translate-x-6 opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100 w-6 h-6" />
-              </span>
-            </button>
           </div>
 
         </div>
 
         {/* ── DESKTOP layout (≥ lg) — completely unchanged ── */}
-        <div className="hidden lg:block">
+        <div className="hidden xl:block">
           <div className="relative max-w-6xl mx-auto">
 
             <div className="flex flex-row items-stretch gap-8">
@@ -156,7 +158,7 @@ const StylishSunglasses = () => {
                   <img
                     src={item.glassesImg}
                     alt={item.type}
-                    className="max-h-[180px] w-auto object-contain drop-shadow-2xl"
+                    className="max-h-[180px] w-auto object-contain drop-shadow-2xl  -mr-[78px]"
                   />
                 </div>
 
