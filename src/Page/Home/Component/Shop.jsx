@@ -38,8 +38,8 @@ const Shop = () => {
           </h2>
         </div>
 
-        {/* ── Mobile Vertical Accordion (< lg) ── */}
-        <div className="flex flex-col gap-3 lg:hidden">
+        {/* ── Mobile Vertical Accordion (< xl) ── */}
+        <div className="flex flex-col gap-3 xl:hidden">
           {shopItems.map((item, index) => {
             const isExpanded = expandedIndex === index;
             const isHovered = hoveredIndex === index;
@@ -51,13 +51,13 @@ const Shop = () => {
                 onMouseLeave={() => setHoveredIndex(null)}
                 onClick={() => setActiveIndex(index)}
                 className="relative cursor-pointer rounded-[22px] overflow-hidden group transition-all duration-700"
-                style={{ height: isExpanded ? "260px" : "110px" }}
+                style={{ height: isExpanded ? "600px" : "190px" }}
               >
                 <img
                   src={item.img}
                   alt={item.name}
                   className="w-full h-full object-cover transition-transform duration-1000 ease-out"
-                  style={{ transform: isHovered ? "scale(1.1)" : "scale(1)", pointerEvents: "none" }}
+                  style={{ transform: isHovered ? "scale(1.1)" : "scale(1)", pointerEvents: "none", objectPosition: "center -70px" }}
                 />
 
                 {/* Top Right — pink circle with arrow */}
@@ -130,8 +130,8 @@ const Shop = () => {
           })}
         </div>
 
-        {/* ── Desktop Accordion (≥ lg) ── */}
-        <div className="hidden lg:flex gap-3">
+        {/* ── Desktop Accordion (≥ xl) ── */}
+        <div className="hidden xl:flex gap-3">
           {shopItems.map((item, index) => {
             const isExpanded = expandedIndex === index;
             const isHovered = hoveredIndex === index;
@@ -151,7 +151,7 @@ const Shop = () => {
                     src={item.img}
                     alt={item.name}
                     className="w-full h-full object-cover transition-transform duration-1000 ease-out"
-                    style={{ transform: isHovered ? "scale(1.1)" : "scale(1)", pointerEvents: "none" }}
+                    style={{ transform: isHovered ? "scale(1.1)" : "scale(1)", pointerEvents: "none", objectPosition: "center -30px" }}
                   />
 
                   {/* Top Right — pink circle */}
