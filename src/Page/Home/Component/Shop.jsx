@@ -158,7 +158,7 @@ useEffect(() => {
                     src={item.img}
                     alt={item.name}
                     className="w-full h-full object-cover transition-transform duration-1000 ease-out"
-                    style={{ transform: isHovered ? "scale(1.1)" : "scale(1)", pointerEvents: "none", objectPosition: "center -30px" }}
+                    style={{ transform: isHovered ? "scale(1.1)" : "scale(1)", pointerEvents: "none"}}
                   />
 
                   {/* Top Right — pink circle */}
