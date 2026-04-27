@@ -117,6 +117,7 @@ const MobileCarousel = ({ activeIndex, setActiveIndex }) => {
         padding: "12px",
         boxShadow: "0 4px 16px rgba(0,0,0,0.07)",
         overflow: "hidden",
+        width: "100%",
       }}
     >
       <div
@@ -130,6 +131,7 @@ const MobileCarousel = ({ activeIndex, setActiveIndex }) => {
           scrollbarWidth: "none",
           msOverflowStyle: "none",
           paddingBottom: "2px",
+          justifyContent: "space-between",
         }}
       >
         {testimonials.map((t, idx) => (
@@ -138,8 +140,8 @@ const MobileCarousel = ({ activeIndex, setActiveIndex }) => {
             onClick={() => handleClick(idx)}
             style={{
               flexShrink: 0,
-              width: idx === activeIndex ? "120px" : "90px",
-              height: "160px",
+              width: idx === activeIndex ? "140px" : "110px",
+              height: "200px",
               borderRadius: "14px",
               overflow: "hidden",
               border: idx === activeIndex ? "3px solid #FF5656" : "2px solid transparent",
@@ -277,7 +279,7 @@ const OurhappyClients = () => {
         </div>
 
         {/* MOBILE layout */}
-        <div className="block md:hidden">
+        <div className="block xl:hidden">
           <MobileCarousel activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
           <DotIndicator total={testimonials.length} active={activeIndex} onDotClick={setActiveIndex} />
 
@@ -320,7 +322,7 @@ const OurhappyClients = () => {
         </div>
 
         {/* DESKTOP layout */}
-        <div className="hidden md:flex items-center justify-center gap-10 lg:gap-16">
+        <div className="hidden xl:flex items-center justify-center gap-10 lg:gap-16">
           <DesktopImageStack activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
 
           <div
