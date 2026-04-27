@@ -27,9 +27,9 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: "Facebook", href: "#", icon: FacebookIcon },
-    { name: "Instagram", href: "#", icon: InstaIcon },
-    { name: "Twitter", href: "#", icon: TwitterIcon },
+    { name: "Facebook", href: "https://www.facebook.com/share/1DL1tdAPLj/", icon: FacebookIcon },
+    { name: "Instagram", href: "https://www.instagram.com/sshree.optical?igsh=MWVjdXAxMmw1ZDB2YQ==", icon: InstaIcon },
+    { name: "Twitter", href: "https://x.com/Shree_optical", icon: TwitterIcon },
   ];
 
   const scrollToTop = () => {
@@ -38,22 +38,21 @@ const Footer = () => {
 
   return (
     <footer className="bg-black text-white pt-16 pb-8 overflow-hidden relative">
-      {/* Background Image with Overlay - True Black and Grayscale */}
+      {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src={FooterBg} 
-          alt="Footer Background" 
+        <img
+          src={FooterBg}
+          alt="Footer Background"
           className="w-full h-full object-cover opacity-60 grayscale"
         />
-        {/* Deep Black Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-8 lg:px-[4rem] xl:px-[5rem] 2xl:px-[6rem] relative z-10">
-        
+
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          
+
           {/* Brand Column */}
           <div className="flex flex-col space-y-6">
             <div className="flex items-center cursor-pointer">
@@ -63,14 +62,16 @@ const Footer = () => {
                 className="h-[90px] md:h-[100px] w-auto object-contain invert brightness-0"
               />
             </div>
-        <p className="text-gray-400 font-poppins font-normal max-w-xs" style={{ fontSize: "15.83px", lineHeight: "130%", letterSpacing: "0%" }}>
-  <span className="font-bold text-white">Shree Optical</span> offers stylish eyewear, sunglasses, lenses, and eyeglasses with modern designs, premium quality, fashion-forward trends, and customer focused service.
-</p>
+            <p className="text-gray-400 font-poppins font-normal max-w-xs" style={{ fontSize: "15.83px", lineHeight: "130%", letterSpacing: "0%" }}>
+              <span className="font-bold text-white">Shree Optical</span> offers stylish eyewear, sunglasses, lenses, and eyeglasses with modern designs, premium quality, fashion-forward trends, and customer focused service.
+            </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group overflow-hidden"
                   aria-label={social.name}
                 >
@@ -131,11 +132,7 @@ const Footer = () => {
             <div className="space-y-6">
               <div className="flex items-start gap-4 group">
                 <div className="w-12 h-12 flex items-center justify-center shrink-0">
-                  <img 
-                    src={LocationIcon} 
-                    alt="Location" 
-                    className="w-full h-full"
-                  />
+                  <img src={LocationIcon} alt="Location" className="w-full h-full" />
                 </div>
                 <p className="text-gray-400 font-inter text-sm leading-relaxed self-center">
                   pramukh sannidhya complex, B-5, Abrama Village, Valsad, Gujarat 396002
@@ -143,11 +140,7 @@ const Footer = () => {
               </div>
               <div className="flex items-start gap-4 group">
                 <div className="w-12 h-12 flex items-center justify-center shrink-0">
-                  <img 
-                    src={PhoneIcon} 
-                    alt="Phone" 
-                    className="w-full h-full"
-                  />
+                  <img src={PhoneIcon} alt="Phone" className="w-full h-full" />
                 </div>
                 <p className="text-gray-400 font-inter text-sm self-center">
                   +91 63558 38127
@@ -155,11 +148,7 @@ const Footer = () => {
               </div>
               <div className="flex items-start gap-4 group">
                 <div className="w-12 h-12 flex items-center justify-center shrink-0">
-                  <img 
-                    src={EmailIcon} 
-                    alt="Email" 
-                    className="w-full h-full"
-                  />
+                  <img src={EmailIcon} alt="Email" className="w-full h-full" />
                 </div>
                 <p className="text-gray-400 font-inter text-sm self-center">
                   sshreeoptical@gmail.com
@@ -178,8 +167,8 @@ const Footer = () => {
           <p className="text-gray-500 text-sm font-inter">
             &copy; {currentYear} Shree Optical. All Rights Reserved.
           </p>
-          
-          <button 
+
+          <button
             onClick={scrollToTop}
             className="group flex items-center gap-3 bg-white/5 hover:bg-primary px-6 py-3 rounded-full border border-white/10 transition-all duration-500"
           >
