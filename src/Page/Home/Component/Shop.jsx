@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import MenImg from "../../../Assets/ShopFor/Mask group (20).webp";
 import WomenImg from "../../../Assets/ShopFor/Mask group (21).webp";
 import KidsImg from "../../../Assets/ShopFor/Mask group (22).webp";
@@ -15,6 +15,13 @@ const shopItems = [
 const Shop = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+useEffect(() => {
+  const handleResize = () => setIsMobile(window.innerWidth < 768);
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
 
   const expandedIndex = hoveredIndex !== null ? hoveredIndex : activeIndex;
 
@@ -51,27 +58,27 @@ const Shop = () => {
                 onMouseLeave={() => setHoveredIndex(null)}
                 onClick={() => setActiveIndex(index)}
                 className="relative cursor-pointer rounded-[22px] overflow-hidden group transition-all duration-700"
-                style={{ height: isExpanded ? "600px" : "190px" }}
+                style={{ height: isExpanded ? (isMobile ? "350px" : "670px") : "190px" }}
               >
                 <img
                   src={item.img}
                   alt={item.name}
                   className="w-full h-full object-cover transition-transform duration-1000 ease-out"
-                  style={{ transform: isHovered ? "scale(1.1)" : "scale(1)", pointerEvents: "none", objectPosition: "center -70px" }}
+                  style={{ transform: isHovered ? "scale(1.1)" : "scale(1)", pointerEvents: "none", objectPosition: isMobile ? "center -15px" : "center -50px" }}
                 />
 
-                {/* Top Right — pink circle with arrow */}
+                {/* Top Right — pink circle with arrow — bigger on tablet */}
                 <div className="absolute top-3 right-3 z-20" style={{ pointerEvents: "none" }}>
-                  <div className="relative w-[38px] h-[38px] bg-primary rounded-full overflow-hidden flex items-center justify-center">
+                  <div className="relative w-[38px] h-[38px] md:w-[70px] md:h-[70px] bg-primary rounded-full overflow-hidden flex items-center justify-center">
                     <img
                       src={FrameIcon}
                       alt="Arrow"
-                      className="absolute w-5 h-5 transition-all duration-700 ease-in-out group-hover:-translate-y-full group-hover:translate-x-full group-hover:opacity-0"
+                      className="absolute w-5 h-5 md:w-7 md:h-7 transition-all duration-700 ease-in-out group-hover:-translate-y-full group-hover:translate-x-full group-hover:opacity-0"
                     />
                     <img
                       src={FrameIcon}
                       alt="Arrow"
-                      className="absolute w-5 h-5 transition-all duration-700 ease-in-out translate-y-full -translate-x-full opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100"
+                      className="absolute w-5 h-5 md:w-9 md:h-9 transition-all duration-700 ease-in-out translate-y-full -translate-x-full opacity-0 group-hover:translate-y-0 group-hover:translate-x-0 group-hover:opacity-100"
                     />
                   </div>
                 </div>
@@ -98,13 +105,13 @@ const Shop = () => {
                 >
                   {isExpanded ? (
                     <div className="absolute inset-0 flex items-end justify-start pb-5 pl-5">
-                      <h3 className="text-white font-bold font-nunito text-3xl drop-shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
+                      <h3 className="text-white font-bold font-nunito text-3xl md:text-5xl drop-shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
                         {item.name}
                       </h3>
                     </div>
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-start pl-5">
-                      <h3 className="text-white font-bold font-nunito text-2xl drop-shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
+                      <h3 className="text-white font-bold font-nunito text-3xl md:text-5xl drop-shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
                         {item.name}
                       </h3>
                     </div>
@@ -121,7 +128,7 @@ const Shop = () => {
                     height: "50%",
                   }}
                 >
-                  <h3 className="text-white font-extrabold font-nunito text-3xl tracking-wide drop-shadow-[0_4px_10px_rgba(0,0,0,0.4)]">
+                  <h3 className="text-white font-extrabold font-nunito text-3xl md:text-5xl tracking-wide drop-shadow-[0_4px_10px_rgba(0,0,0,0.4)]">
                     {item.name}
                   </h3>
                 </div>
