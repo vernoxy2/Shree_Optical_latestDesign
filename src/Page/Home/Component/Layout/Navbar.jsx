@@ -68,8 +68,8 @@ const Navbar = ({ heroRef }) => {
             />
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8 lg:gap-10 xl:gap-14 mx-6 lg:mx-8">
+          {/* Desktop Nav — right aligned, no mx centering */}
+          <div className="hidden md:flex items-center gap-8 lg:gap-10 xl:gap-14 ml-auto mr-6 lg:mr-8">
             {navLinks.map((link) => (
               <Link key={link.name} to={link.href} className={getLinkClass(link.href)}>
                 {link.name}
